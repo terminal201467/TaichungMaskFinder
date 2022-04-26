@@ -10,10 +10,13 @@
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
-		97F409F52817C8AB00527646 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F409F32817C8AB00527646 /* Main.storyboard */; };
 		97F409F82817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F62817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld */; };
 		97F409FA2817C8AD00527646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97F409F92817C8AD00527646 /* Assets.xcassets */; };
 		97F409FD2817C8AD00527646 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */; };
+		97F40A062817C8F700527646 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F40A052817C8F700527646 /* Alamofire */; };
+		97F40A082817C92900527646 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A072817C92900527646 /* Model.swift */; };
+		97F40A0A2817C93800527646 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A092817C93800527646 /* View.swift */; };
+		97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A0B2817C97C00527646 /* NetworkController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +24,13 @@
 		97F409ED2817C8AB00527646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F409EF2817C8AB00527646 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		97F409F12817C8AB00527646 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		97F409F42817C8AB00527646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97F409F72817C8AB00527646 /* TaichungMaskFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaichungMaskFinder.xcdatamodel; sourceTree = "<group>"; };
 		97F409F92817C8AD00527646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97F409FC2817C8AD00527646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97F409FE2817C8AD00527646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97F40A072817C92900527646 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		97F40A092817C93800527646 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		97F40A0B2817C97C00527646 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F40A062817C8F700527646 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +66,10 @@
 			children = (
 				97F409ED2817C8AB00527646 /* AppDelegate.swift */,
 				97F409EF2817C8AB00527646 /* SceneDelegate.swift */,
+				97F40A072817C92900527646 /* Model.swift */,
 				97F409F12817C8AB00527646 /* ViewController.swift */,
-				97F409F32817C8AB00527646 /* Main.storyboard */,
+				97F40A092817C93800527646 /* View.swift */,
+				97F40A0B2817C97C00527646 /* NetworkController.swift */,
 				97F409F92817C8AD00527646 /* Assets.xcassets */,
 				97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */,
 				97F409FE2817C8AD00527646 /* Info.plist */,
@@ -86,6 +94,9 @@
 			dependencies = (
 			);
 			name = TaichungMaskFinder;
+			packageProductDependencies = (
+				97F40A052817C8F700527646 /* Alamofire */,
+			);
 			productName = TaichungMaskFinder;
 			productReference = 97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 97F409E12817C8AB00527646;
+			packageReferences = (
+				97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 97F409EB2817C8AB00527646 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +144,6 @@
 			files = (
 				97F409FD2817C8AD00527646 /* LaunchScreen.storyboard in Resources */,
 				97F409FA2817C8AD00527646 /* Assets.xcassets in Resources */,
-				97F409F52817C8AB00527646 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F40A082817C92900527646 /* Model.swift in Sources */,
 				97F409F22817C8AB00527646 /* ViewController.swift in Sources */,
+				97F40A0A2817C93800527646 /* View.swift in Sources */,
 				97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */,
 				97F409F82817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld in Sources */,
+				97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */,
 				97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,14 +167,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		97F409F32817C8AB00527646 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97F409F42817C8AB00527646 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -298,7 +306,6 @@
 				INFOPLIST_FILE = TaichungMaskFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -326,7 +333,6 @@
 				INFOPLIST_FILE = TaichungMaskFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -364,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97F40A052817C8F700527646 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		97F409F62817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld */ = {
