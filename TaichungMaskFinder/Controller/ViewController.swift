@@ -8,10 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let network = NetworkController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setNetwork()
+    }
+    
+    func setNetwork(){
+        network.getData()
     }
 
 
