@@ -10,7 +10,7 @@ import Foundation
 
 struct Model:Decodable{
     let type:String
-    let features:Feature
+    var features:[Feature]
     
     struct Feature:Decodable{
         let type:String
@@ -21,23 +21,23 @@ struct Model:Decodable{
             let id:String
             let name:String
             let phone:String
-            let adress:String
-            let mask_Adult:Int
-            let mask_Child:Int
+            let address:String
+            let mask_adult:Int
+            let mask_child:Int
             let updated:String
             let available:String
             let note:String
-            let custom:String
+            let custom_note:String
             let website:String
             let county:String
             let town:String
             let cunli:String
-            let serve_period:String
+            let service_periods:String
         }
         
         struct Geometry:Decodable{
             let type:String
-            let coordinate:[Double]
+            let coordinates:[Double]
         }
     }
     

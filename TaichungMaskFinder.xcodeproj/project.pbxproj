@@ -7,34 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */; };
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
-		97F409F82817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F62817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld */; };
 		97F409FA2817C8AD00527646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97F409F92817C8AD00527646 /* Assets.xcassets */; };
 		97F409FD2817C8AD00527646 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */; };
 		97F40A062817C8F700527646 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F40A052817C8F700527646 /* Alamofire */; };
 		97F40A0A2817C93800527646 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A092817C93800527646 /* View.swift */; };
 		97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A0B2817C97C00527646 /* NetworkController.swift */; };
 		97F40A1628192E1F00527646 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* Model.swift */; };
-		97F40A1928194FE800527646 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1728194FE800527646 /* Entity+CoreDataClass.swift */; };
-		97F40A1A28194FE800527646 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1828194FE800527646 /* Entity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		97D8C45328196677005E21C0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungMaskFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F409ED2817C8AB00527646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F409EF2817C8AB00527646 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		97F409F12817C8AB00527646 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		97F409F72817C8AB00527646 /* TaichungMaskFinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaichungMaskFinder.xcdatamodel; sourceTree = "<group>"; };
 		97F409F92817C8AD00527646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97F409FC2817C8AD00527646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97F409FE2817C8AD00527646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F40A092817C93800527646 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		97F40A0B2817C97C00527646 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		97F40A1528192E1F00527646 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		97F40A1728194FE800527646 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		97F40A1828194FE800527646 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +48,6 @@
 		97F409E12817C8AB00527646 = {
 			isa = PBXGroup;
 			children = (
-				97F40A1728194FE800527646 /* Entity+CoreDataClass.swift */,
-				97F40A1828194FE800527646 /* Entity+CoreDataProperties.swift */,
 				97F409EC2817C8AB00527646 /* TaichungMaskFinder */,
 				97F409EB2817C8AB00527646 /* Products */,
 			);
@@ -79,7 +73,7 @@
 				97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */,
 				97F409F92817C8AD00527646 /* Assets.xcassets */,
 				97F409FE2817C8AD00527646 /* Info.plist */,
-				97F409F62817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld */,
+				97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */,
 			);
 			path = TaichungMaskFinder;
 			sourceTree = "<group>";
@@ -195,11 +189,9 @@
 				97F40A1628192E1F00527646 /* Model.swift in Sources */,
 				97F409F22817C8AB00527646 /* ViewController.swift in Sources */,
 				97F40A0A2817C93800527646 /* View.swift in Sources */,
-				97F40A1A28194FE800527646 /* Entity+CoreDataProperties.swift in Sources */,
+				97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */,
 				97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */,
-				97F409F82817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld in Sources */,
 				97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */,
-				97F40A1928194FE800527646 /* Entity+CoreDataClass.swift in Sources */,
 				97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,13 +423,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		97F409F62817C8AB00527646 /* TaichungMaskFinder.xcdatamodeld */ = {
+		97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				97F409F72817C8AB00527646 /* TaichungMaskFinder.xcdatamodel */,
+				97D8C45328196677005E21C0 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 97F409F72817C8AB00527646 /* TaichungMaskFinder.xcdatamodel */;
-			path = TaichungMaskFinder.xcdatamodeld;
+			currentVersion = 97D8C45328196677005E21C0 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

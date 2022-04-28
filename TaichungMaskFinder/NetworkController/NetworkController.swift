@@ -17,6 +17,10 @@ import Alamofire
 
 class NetworkController: NSObject {
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var networks:[Model.Feature] = []
+    
     //MARK:-Properties
     var container:NSPersistentContainer!
     
@@ -24,23 +28,49 @@ class NetworkController: NSObject {
 
     //MARK:-GetMethod
     func getData(){
-        AF.request(baseURL).responseJSON { (response) in
-            print("status:\(response.response?.statusCode)")
-            switch response.result{
-            case .failure(let error):
-                print(error)
-            case .success(let data):
+        AF.request(baseURL).responseJSON { response in
+            debugPrint("Status:\(response.response?.statusCode)")
+            if let data = response.data{
+                print("data:",data)
                 do{
-                    let decode = try JSONDecoder().decode(Model.self, from: data as! Data)
-                    print("Json:",decode)
+                    let decode = try JSONDecoder().decode(Model.self, from: data)
+                    self.networks = decode.features
+                    print(self.networks)
                 }catch{
-                    print(error)
+                    print("error:",error.localizedDescription)
                 }
             }
         }
     }
-    //MARK:-SaveContext
     
+    //MARK:-InsertObject
+    func insertObject(){
+        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskData", into: self.context) as! Model
+        member.features
+        do{
+            try self.context.save()
+        }catch{
+            fatalError("\(error)")
+        }
+    }
+    
+    //MARK:-DeleteObject
+    func deleteObject(){
+        let request = NSFetchRequest<Member>(entityName:"Member")
+        do{
+            let results = try self.context.fetch(request)
+            for item in results{
+                if item.
+            }
+        }catch{
+            
+        }
+    }
+    
+    
+    
+    
+    //MARK:-SaveContext
     func saveContext(){
         let context = container.viewContext
         if context.hasChanges{

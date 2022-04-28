@@ -9,14 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let network = NetworkController()
+    private let maskView = View()
+    
+    private let network = NetworkController()
+    
+    override func loadView() {
+        super.loadView()
+        view = maskView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setNetwork()
     }
     
-    func setNetwork(){
+    private func setNetwork(){
         network.getData()
     }
 
