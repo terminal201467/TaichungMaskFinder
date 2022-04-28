@@ -25,6 +25,8 @@ class NetworkController: NSObject {
     
     var getNetworksData:[MaskGeoData.Feature] = []
     
+    var coreData:[MaskData] = []
+    
     //MARK:-Properties
     var container:NSPersistentContainer!
     
@@ -90,15 +92,30 @@ class NetworkController: NSObject {
     }
     
     //MARK:-DeleteObject
-    func deleteObject(){
-        let request = NSFetchRequest<Member>(entityName:"Member")
+    func deleteObject(indexPath:IndexPath){
+        let request = NSFetchRequest<MaskData>(entityName:"MaskData")
         do{
             let results = try self.context.fetch(request)
-            for item in results{
-                if item.
+            results.map { data in
+                data.id = coreData[indexPath.row].id
+                data.name = coreData[indexPath.row].name
+                data.address = coreData[indexPath.row].address
+                data.phone = coreData[indexPath.row].phone
+                data.note = coreData[indexPath.row].note
+                data.custom_note = coreData[indexPath.row].custom_note
+                data.website = coreData[indexPath.row].website
+                data.mask_adult = coreData[indexPath.row].mask_adult
+                data.mask_child = coreData[indexPath.row].mask_child
+                data.available = coreData[indexPath.row].available
+                data.county = coreData[indexPath.row].county
+                data.cunli = coreData[indexPath.row].cunli
+                data.town = coreData[indexPath.row].town
+                data.update = coreData[indexPath.row].update
+                data.service_period = coreData[indexPath.row].service_period
             }
+            try self.context.save()
         }catch{
-
+            fatalError("Failed to fetch data: \(error)")
         }
     }
     
