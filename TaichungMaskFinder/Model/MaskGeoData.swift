@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Model:Decodable{
+struct MaskGeoData:Decodable{
     let type:String
     var features:[Feature]
     
@@ -40,6 +40,4 @@ struct Model:Decodable{
             let coordinates:[Double]
         }
     }
-    
-    
 }

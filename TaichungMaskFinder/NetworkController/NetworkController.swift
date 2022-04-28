@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Alamofire
+import SwiftUI
 
 //取得台中地區的口罩數量，資料需存入 Local 資料庫 (Core Data)
 //UI需顯示列表瀏覽口罩數量且能依照區域做篩選
@@ -17,9 +18,12 @@ import Alamofire
 
 class NetworkController: NSObject {
     
+    //MARK:-Binding
+    var valueChanged:(()->Void)?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var networks:[Model.Feature] = []
+    var getNetworksData:[MaskGeoData.Feature] = []
     
     //MARK:-Properties
     var container:NSPersistentContainer!
@@ -33,9 +37,9 @@ class NetworkController: NSObject {
             if let data = response.data{
                 print("data:",data)
                 do{
-                    let decode = try JSONDecoder().decode(Model.self, from: data)
-                    self.networks = decode.features
-                    print(self.networks)
+                    let decode = try JSONDecoder().decode(MaskGeoData.self, from: data)
+                    self.getNetworksData = decode.features
+                    print(self.getNetworksData)
                 }catch{
                     print("error:",error.localizedDescription)
                 }
@@ -43,10 +47,41 @@ class NetworkController: NSObject {
         }
     }
     
+    //MARK:-SelectObject
+    func selectObject()->Array<MaskData>{
+        var array:[MaskData] = []
+        let request = NSFetchRequest<MaskData>(entityName: "MaskData")
+        do{
+            let results = try self.context.fetch(request)
+            for result in results {
+                array.append(result)
+            }
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        return array
+    }
+    
+    
     //MARK:-InsertObject
-    func insertObject(){
-        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskData", into: self.context) as! Model
-        member.features
+    func insertObject(feature:MaskGeoData.Feature){
+        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskGeoData", into: self.context) as! MaskData
+        member.id = feature.properties.id
+        member.address = feature.properties.address
+        member.available = feature.properties.available
+        member.county = feature.properties.county
+        member.note = feature.properties.note
+        member.custom_note = feature.properties.custom_note
+        member.mask_adult = feature.properties.mask_adult
+        member.mask_child = feature.properties.mask_child
+        member.phone = feature.properties.phone
+        member.county = feature.properties.county
+        member.cunli = feature.properties.cunli
+        member.service_period = feature.properties.service_periods
+        member.website = feature.properties.website
+        member.town = feature.properties.town
+        member.name = feature.properties.name
+        member.update = feature.properties.updated
         do{
             try self.context.save()
         }catch{
@@ -63,7 +98,7 @@ class NetworkController: NSObject {
                 if item.
             }
         }catch{
-            
+
         }
     }
     

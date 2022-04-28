@@ -6,17 +6,18 @@
         <attribute name="county" optional="YES" attributeType="String"/>
         <attribute name="cunli" optional="YES" attributeType="String"/>
         <attribute name="custom_note" optional="YES" attributeType="String"/>
-        <attribute name="mask_adult" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mask_child" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="mask_adult" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mask_child" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="service_period" optional="YES" attributeType="String"/>
         <attribute name="town" optional="YES" attributeType="String"/>
-        <attribute name="updated" optional="YES" attributeType="String"/>
+        <attribute name="update" optional="YES" attributeType="String"/>
         <attribute name="website" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="MaskData" positionX="-63" positionY="-18" width="128" height="14"/>
+        <element name="MaskData" positionX="-63" positionY="-18" width="128" height="268"/>
     </elements>
 </model>

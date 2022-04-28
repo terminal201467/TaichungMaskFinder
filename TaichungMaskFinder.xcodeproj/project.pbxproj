@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */; };
+		97D8C461281A2799005E21C0 /* MaskData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45F281A2799005E21C0 /* MaskData+CoreDataClass.swift */; };
+		97D8C462281A2799005E21C0 /* MaskData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */; };
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
@@ -16,11 +18,13 @@
 		97F40A062817C8F700527646 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F40A052817C8F700527646 /* Alamofire */; };
 		97F40A0A2817C93800527646 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A092817C93800527646 /* View.swift */; };
 		97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A0B2817C97C00527646 /* NetworkController.swift */; };
-		97F40A1628192E1F00527646 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* Model.swift */; };
+		97F40A1628192E1F00527646 /* MaskGeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* MaskGeoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		97D8C45328196677005E21C0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		97D8C45F281A2799005E21C0 /* MaskData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungMaskFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F409ED2817C8AB00527646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F409EF2817C8AB00527646 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,7 +34,7 @@
 		97F409FE2817C8AD00527646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F40A092817C93800527646 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		97F40A0B2817C97C00527646 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
-		97F40A1528192E1F00527646 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		97F40A1528192E1F00527646 /* MaskGeoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskGeoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,8 @@
 		97F409E12817C8AB00527646 = {
 			isa = PBXGroup;
 			children = (
+				97D8C45F281A2799005E21C0 /* MaskData+CoreDataClass.swift */,
+				97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */,
 				97F409EC2817C8AB00527646 /* TaichungMaskFinder */,
 				97F409EB2817C8AB00527646 /* Products */,
 			);
@@ -81,7 +87,7 @@
 		97F40A0D28184D1300527646 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				97F40A1528192E1F00527646 /* Model.swift */,
+				97F40A1528192E1F00527646 /* MaskGeoData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,13 +192,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97F40A1628192E1F00527646 /* Model.swift in Sources */,
+				97F40A1628192E1F00527646 /* MaskGeoData.swift in Sources */,
+				97D8C461281A2799005E21C0 /* MaskData+CoreDataClass.swift in Sources */,
 				97F409F22817C8AB00527646 /* ViewController.swift in Sources */,
 				97F40A0A2817C93800527646 /* View.swift in Sources */,
 				97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */,
 				97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */,
 				97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */,
 				97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */,
+				97D8C462281A2799005E21C0 /* MaskData+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
