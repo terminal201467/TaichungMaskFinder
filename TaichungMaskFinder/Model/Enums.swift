@@ -39,5 +39,15 @@ enum TiteSize:Int{
         case .celltitle:  return 15
         }
     }
-    
+}
+
+enum AreaSelect:Int,CaseIterable{
+    case taipei = 0,taichung,tainan
+    var text:String{
+        switch self{
+        case .taipei:   return "臺北市"
+        case .taichung: return "臺中市"
+        case .tainan:   return "臺南市"
+        }
+    }
 }

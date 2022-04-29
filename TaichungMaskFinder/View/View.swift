@@ -34,7 +34,7 @@ class View: UIView {
         return label
     }()
     
-    lazy var items:UIStackView = {
+    private lazy var items:UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [pharmacyName,maskKind,infoItem])
         stackView.distribution = .fillProportionally
         stackView.alignment = .fill
@@ -53,11 +53,18 @@ class View: UIView {
         return tableView
     }()
     
+    let areaSelector:UIPickerView = {
+        let pickView = UIPickerView()
+        pickView.backgroundColor = .white
+        return pickView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         addSubview(items)
         addSubview(table)
+        addSubview(areaSelector)
         autoLayout()
     }
     

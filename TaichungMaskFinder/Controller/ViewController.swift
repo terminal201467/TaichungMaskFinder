@@ -24,12 +24,13 @@ class ViewController: UIViewController {
         setNavigationBar()
         setNetwork()
         setTable()
-        
+        setPickView()
     }
     
     private func setNavigationBar(){
-        title = "台中找口罩"
+        title = "找找口罩"
         let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(choose))
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .blue
         self.navigationItem.rightBarButtonItem = chooseMask
 
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
     
     @objc func choose(){
         //PickView
+        print("PickView")
     }
     
     private func setNetwork(){
@@ -46,13 +48,17 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.maskView.table.reloadData()
             }
-            
         }
     }
     
     private func setTable(){
         maskView.table.delegate = self
         maskView.table.dataSource = self
+    }
+    
+    private func setPickView(){
+        maskView.areaSelector.delegate = self
+        maskView.areaSelector.dataSource = self
     }
 }
 
@@ -66,8 +72,15 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         cell.configure(data: network.getData(indexPath))
         return cell
     }
+}
+
+extension ViewController:UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-    
-    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return AreaSelect.allCases.count
+    }
 }
 
