@@ -34,10 +34,8 @@ class ViewController: UIViewController {
     
     private func setNetwork(){
         network.getData()
-        
         network.valueChanged = {
             print("台中:",self.network.taichungData.count)
-            
         }
     }
     
