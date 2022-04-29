@@ -35,7 +35,11 @@ class ViewController: UIViewController {
     private func setNetwork(){
         network.getData()
         network.valueChanged = {
-            print("台中:",self.network.taichungData.count)
+//            print("台中:",self.network.taichungData.count)
+            DispatchQueue.main.async {
+                self.maskView.table.reloadData()
+            }
+            
         }
     }
     
@@ -47,12 +51,12 @@ class ViewController: UIViewController {
 
 extension ViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        network.taichungData.count
+        network.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath)as! TableViewCell
-        
+        cell.configure(data: network.getData(indexPath))
         return cell
     }
     

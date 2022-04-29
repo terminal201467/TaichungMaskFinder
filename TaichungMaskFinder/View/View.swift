@@ -45,7 +45,7 @@ class View: UIView {
     }()
     
     let table:UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
+        let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = 100

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 import Alamofire
-
+import SwiftUI
 //取得台中地區的口罩數量，資料需存入 Local 資料庫 (Core Data)
 //UI需顯示列表瀏覽口罩數量且能依照區域做篩選
 //提供刪除某一筆資料的功能
@@ -148,6 +148,15 @@ class NetworkController: NSObject {
         }catch{
             fatalError("Failed to fetch data: \(error)")
         }
+    }
+    
+    //MARK:-AlamoGetData
+    func numberOfRowsInSection(_ section:Int)->Int{
+        return getNetworksData.count
+    }
+    
+    func getData(_ indexPath:IndexPath)->MaskGeoData.Feature{
+        return getNetworksData[indexPath.row]
     }
 }
 

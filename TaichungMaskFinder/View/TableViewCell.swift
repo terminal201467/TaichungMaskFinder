@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
     private let county:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
@@ -21,6 +22,7 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .green
         label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
@@ -28,24 +30,28 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
     private let phone:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
     private let maskAdult:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
     private let maskChild:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
 
@@ -53,17 +59,18 @@ class TableViewCell: UITableViewCell {
     private let town:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
     private let note:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
     
-    
-    lazy var location:UIStackView = {
+    private lazy var location:UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [county,town])
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
@@ -72,7 +79,7 @@ class TableViewCell: UITableViewCell {
         return stackView
     }()
     
-    lazy var maskKind:UIStackView = {
+    private lazy var maskKind:UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [maskAdult,maskChild])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -81,7 +88,7 @@ class TableViewCell: UITableViewCell {
         return stackView
     }()
     
-    lazy var info:UIStackView = {
+    private lazy var info:UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [phone,adress,note])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -92,9 +99,10 @@ class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(location)
-        addSubview(maskKind)
-        addSubview(info)
+        contentView.addSubview(name)
+        contentView.addSubview(location)
+        contentView.addSubview(maskKind)
+        contentView.addSubview(info)
         autoLayout()
         
     }
@@ -109,6 +117,11 @@ class TableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
         
+        location.snp.makeConstraints { make in
+            make.bottom.equalTo(name.snp.top)
+            make.centerY.equalTo(name.snp.centerY)
+        }
+        
         maskKind.snp.makeConstraints { make in
             make.left.equalTo(name.snp.right)
             make.centerY.equalToSuperview()
@@ -120,7 +133,7 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-    private func configure(data:MaskGeoData.Feature){
+    func configure(data:MaskGeoData.Feature){
         name.text = data.properties.name
         county.text = data.properties.county
         town.text = data.properties.town
