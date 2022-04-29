@@ -17,9 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = UINavigationController(rootViewController:ViewController())
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let netWork = NetworkController()
-        netWork.container = appDelegate?.persistentContainer
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

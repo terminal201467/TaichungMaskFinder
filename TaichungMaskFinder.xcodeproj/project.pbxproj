@@ -10,6 +10,8 @@
 		97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */; };
 		97D8C461281A2799005E21C0 /* MaskData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45F281A2799005E21C0 /* MaskData+CoreDataClass.swift */; };
 		97D8C462281A2799005E21C0 /* MaskData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */; };
+		97D8C46A281B81F1005E21C0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97D8C469281B81F1005E21C0 /* SnapKit */; };
+		97D8C46C281B828E005E21C0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46B281B828E005E21C0 /* TableViewCell.swift */; };
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
@@ -25,6 +27,7 @@
 		97D8C45328196677005E21C0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		97D8C45F281A2799005E21C0 /* MaskData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		97D8C46B281B828E005E21C0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungMaskFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F409ED2817C8AB00527646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F409EF2817C8AB00527646 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97F40A062817C8F700527646 /* Alamofire in Frameworks */,
+				97D8C46A281B81F1005E21C0 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				97F40A092817C93800527646 /* View.swift */,
+				97D8C46B281B828E005E21C0 /* TableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			name = TaichungMaskFinder;
 			packageProductDependencies = (
 				97F40A052817C8F700527646 /* Alamofire */,
+				97D8C469281B81F1005E21C0 /* SnapKit */,
 			);
 			productName = TaichungMaskFinder;
 			productReference = 97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */;
@@ -165,6 +171,7 @@
 			mainGroup = 97F409E12817C8AB00527646;
 			packageReferences = (
 				97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				97D8C468281B81F1005E21C0 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 97F409EB2817C8AB00527646 /* Products */;
 			projectDirPath = "";
@@ -197,6 +204,7 @@
 				97F409F22817C8AB00527646 /* ViewController.swift in Sources */,
 				97F40A0A2817C93800527646 /* View.swift in Sources */,
 				97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */,
+				97D8C46C281B828E005E21C0 /* TableViewCell.swift in Sources */,
 				97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */,
 				97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */,
 				97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */,
@@ -412,6 +420,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		97D8C468281B81F1005E21C0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -423,6 +439,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		97D8C469281B81F1005E21C0 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97D8C468281B81F1005E21C0 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		97F40A052817C8F700527646 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */;

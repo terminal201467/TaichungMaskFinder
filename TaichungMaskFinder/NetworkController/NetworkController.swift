@@ -25,7 +25,7 @@ class NetworkController: NSObject {
     var taichungData:[MaskGeoData.Feature.Properties] = []{
         didSet{
             valueChanged?()
-            print("data:",taichungData)
+//            print("taichungData:",taichungData)
 //            taichungData.map{insertObject(feature: $0)}
         }
     }
@@ -37,7 +37,7 @@ class NetworkController: NSObject {
         }
     }
     
-    var coreData:[MaskData] = []
+    var localData:[MaskData] = []
     
     //MARK:-Properties
     var container:NSPersistentContainer!
@@ -76,9 +76,7 @@ class NetworkController: NSObject {
         let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
         do{
             let results = try self.context.fetch(request)
-            for result in results {
-                array.append(result)
-            }
+            for result in results { array.append(result) }
         }catch{
             fatalError("Failed to fetch data: \(error.localizedDescription)")
         }
@@ -109,31 +107,15 @@ class NetworkController: NSObject {
         }catch{
             fatalError("\(error)")
         }
-        self.coreData = self.selectObject()
+        self.localData = self.selectObject()
     }
     
     //MARK:-DeleteObject
     func deleteObject(indexPath:IndexPath){
         let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
+        context.delete(localData[indexPath.row])
         do{
             let results = try self.context.fetch(request)
-            results.map { data in
-                data.id = coreData[indexPath.row].id
-                data.name = coreData[indexPath.row].name
-                data.address = coreData[indexPath.row].address
-                data.phone = coreData[indexPath.row].phone
-                data.note = coreData[indexPath.row].note
-                data.custom_note = coreData[indexPath.row].custom_note
-                data.website = coreData[indexPath.row].website
-                data.mask_adult = coreData[indexPath.row].mask_adult
-                data.mask_child = coreData[indexPath.row].mask_child
-                data.available = coreData[indexPath.row].available
-                data.county = coreData[indexPath.row].county
-                data.cunli = coreData[indexPath.row].cunli
-                data.town = coreData[indexPath.row].town
-                data.update = coreData[indexPath.row].update
-                data.service_period = coreData[indexPath.row].service_period
-            }
             try self.context.save()
         }catch{
             fatalError("Failed to fetch data: \(error)")
@@ -146,21 +128,21 @@ class NetworkController: NSObject {
         do{
             let results = try self.context.fetch(request)
             results.map { data in
-                data.id = coreData[indexPath.row].id
-                data.name = coreData[indexPath.row].name
-                data.address = coreData[indexPath.row].address
-                data.phone = coreData[indexPath.row].phone
-                data.note = coreData[indexPath.row].note
-                data.custom_note = coreData[indexPath.row].custom_note
-                data.website = coreData[indexPath.row].website
-                data.mask_adult = coreData[indexPath.row].mask_adult
-                data.mask_child = coreData[indexPath.row].mask_child
-                data.available = coreData[indexPath.row].available
-                data.county = coreData[indexPath.row].county
-                data.cunli = coreData[indexPath.row].cunli
-                data.town = coreData[indexPath.row].town
-                data.update = coreData[indexPath.row].update
-                data.service_period = coreData[indexPath.row].service_period
+                data.id = localData[indexPath.row].id
+                data.name = localData[indexPath.row].name
+                data.address = localData[indexPath.row].address
+                data.phone = localData[indexPath.row].phone
+                data.note = localData[indexPath.row].note
+                data.custom_note = localData[indexPath.row].custom_note
+                data.website = localData[indexPath.row].website
+                data.mask_adult = localData[indexPath.row].mask_adult
+                data.mask_child = localData[indexPath.row].mask_child
+                data.available = localData[indexPath.row].available
+                data.county = localData[indexPath.row].county
+                data.cunli = localData[indexPath.row].cunli
+                data.town = localData[indexPath.row].town
+                data.update = localData[indexPath.row].update
+                data.service_period = localData[indexPath.row].service_period
             }
             try self.context.save()
         }catch{
