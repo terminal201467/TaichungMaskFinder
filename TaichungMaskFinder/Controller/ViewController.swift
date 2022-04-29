@@ -28,8 +28,15 @@ class ViewController: UIViewController {
     }
     
     private func setNavigationBar(){
-        title = "找口罩"
-        navigationController?.navigationBar.tintColor = .white
+        title = "台中找口罩"
+        let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(choose))
+        navigationController?.navigationBar.tintColor = .blue
+        self.navigationItem.rightBarButtonItem = chooseMask
+
+    }
+    
+    @objc func choose(){
+        //PickView
     }
     
     private func setNetwork(){
