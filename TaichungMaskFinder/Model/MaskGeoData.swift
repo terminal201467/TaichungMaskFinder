@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct MaskGeoData:Decodable{
     let type:String
     var features:[Feature]

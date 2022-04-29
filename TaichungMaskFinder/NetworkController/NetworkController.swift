@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 import Alamofire
-import SwiftUI
 
 //取得台中地區的口罩數量，資料需存入 Local 資料庫 (Core Data)
 //UI需顯示列表瀏覽口罩數量且能依照區域做篩選
@@ -23,7 +22,20 @@ class NetworkController: NSObject {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var getNetworksData:[MaskGeoData.Feature] = []
+    var taichungData:[MaskGeoData.Feature.Properties] = []{
+        didSet{
+            valueChanged?()
+            print("data:",taichungData)
+//            taichungData.map{insertObject(feature: $0)}
+        }
+    }
+    
+    var getNetworksData:[MaskGeoData.Feature] = []{
+        didSet{
+            valueChanged?()
+            filter(county: "臺中市")
+        }
+    }
     
     var coreData:[MaskData] = []
     
@@ -41,7 +53,7 @@ class NetworkController: NSObject {
                 do{
                     let decode = try JSONDecoder().decode(MaskGeoData.self, from: data)
                     self.getNetworksData = decode.features
-                    print(self.getNetworksData)
+                    print("數量：",self.getNetworksData.count)
                 }catch{
                     print("error:",error.localizedDescription)
                 }
@@ -49,51 +61,60 @@ class NetworkController: NSObject {
         }
     }
     
+    func filter(county:String){
+        for data in getNetworksData{
+            if data.properties.county == county{
+//                print("\(county)資料:",data.properties)
+                taichungData.append(data.properties)
+            }
+        }
+    }
+    
     //MARK:-SelectObject
     func selectObject()->Array<MaskData>{
         var array:[MaskData] = []
-        let request = NSFetchRequest<MaskData>(entityName: "MaskData")
+        let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
         do{
             let results = try self.context.fetch(request)
             for result in results {
                 array.append(result)
             }
         }catch{
-            fatalError("Failed to fetch data: \(error)")
+            fatalError("Failed to fetch data: \(error.localizedDescription)")
         }
         return array
     }
     
-    
     //MARK:-InsertObject
-    func insertObject(feature:MaskGeoData.Feature){
-        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskGeoData", into: self.context) as! MaskData
-        member.id = feature.properties.id
-        member.address = feature.properties.address
-        member.available = feature.properties.available
-        member.county = feature.properties.county
-        member.note = feature.properties.note
-        member.custom_note = feature.properties.custom_note
-        member.mask_adult = feature.properties.mask_adult
-        member.mask_child = feature.properties.mask_child
-        member.phone = feature.properties.phone
-        member.county = feature.properties.county
-        member.cunli = feature.properties.cunli
-        member.service_period = feature.properties.service_periods
-        member.website = feature.properties.website
-        member.town = feature.properties.town
-        member.name = feature.properties.name
-        member.update = feature.properties.updated
+    func insertObject(feature:MaskGeoData.Feature.Properties){
+        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskData", into: self.context) as! MaskData
+        member.id = feature.id
+        member.address = feature.address
+        member.available = feature.available
+        member.county = feature.county
+        member.note = feature.note
+        member.custom_note = feature.custom_note
+        member.mask_adult = feature.mask_adult
+        member.mask_child = feature.mask_child
+        member.phone = feature.phone
+        member.county = feature.county
+        member.cunli = feature.cunli
+        member.service_period = feature.service_periods
+        member.website = feature.website
+        member.town = feature.town
+        member.name = feature.name
+        member.update = feature.updated
         do{
             try self.context.save()
         }catch{
             fatalError("\(error)")
         }
+        self.coreData = self.selectObject()
     }
     
     //MARK:-DeleteObject
     func deleteObject(indexPath:IndexPath){
-        let request = NSFetchRequest<MaskData>(entityName:"MaskData")
+        let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
         do{
             let results = try self.context.fetch(request)
             results.map { data in
@@ -119,19 +140,31 @@ class NetworkController: NSObject {
         }
     }
     
-    
-    
-    
-    //MARK:-SaveContext
-    func saveContext(){
-        let context = container.viewContext
-        if context.hasChanges{
-            do{
-                try context.save()
-            }catch{
-                let nserror = error as NSError
-                fatalError("Unresolve error:\(nserror),\(nserror.userInfo)")
+    //MARK:-updateObject
+    func updateObject(indexPath:IndexPath){
+        let request = NSFetchRequest<MaskData>(entityName: "MaskData")
+        do{
+            let results = try self.context.fetch(request)
+            results.map { data in
+                data.id = coreData[indexPath.row].id
+                data.name = coreData[indexPath.row].name
+                data.address = coreData[indexPath.row].address
+                data.phone = coreData[indexPath.row].phone
+                data.note = coreData[indexPath.row].note
+                data.custom_note = coreData[indexPath.row].custom_note
+                data.website = coreData[indexPath.row].website
+                data.mask_adult = coreData[indexPath.row].mask_adult
+                data.mask_child = coreData[indexPath.row].mask_child
+                data.available = coreData[indexPath.row].available
+                data.county = coreData[indexPath.row].county
+                data.cunli = coreData[indexPath.row].cunli
+                data.town = coreData[indexPath.row].town
+                data.update = coreData[indexPath.row].update
+                data.service_period = coreData[indexPath.row].service_period
             }
+            try self.context.save()
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
         }
     }
 }

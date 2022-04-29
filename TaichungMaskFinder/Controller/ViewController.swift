@@ -21,12 +21,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNetwork()
+        
     }
     
     private func setNetwork(){
         network.getData()
+//        network.filter(county: "臺中市")
+        
+        network.valueChanged = {
+            print("台中:",self.network.taichungData.count)
+            
+        }
     }
-
-
+    
+    
+    
 }
 
