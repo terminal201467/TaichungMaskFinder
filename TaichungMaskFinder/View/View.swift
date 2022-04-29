@@ -10,10 +10,38 @@ import SnapKit
 
 class View: UIView {
     
-    let selectView:UIView = {
-       let view = UIView()
-        view.backgroundColor = .green
-        return view
+    private let pharmacyName:UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ItemName.pharmacy.text
+        label.font = UIFont.systemFont(ofSize: TiteSize.title.Size)
+        return label
+    }()
+    
+    private let maskKind:UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ItemName.maskKind.text
+        label.font = UIFont.systemFont(ofSize: TiteSize.title.Size)
+        return label
+    }()
+    
+    private let infoItem:UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = ItemName.info.text
+        label.font = UIFont.systemFont(ofSize: TiteSize.title.Size)
+        return label
+    }()
+    
+    lazy var items:UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [pharmacyName,maskKind,infoItem])
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 3
+        stackView.backgroundColor = .white
+        return stackView
     }()
     
     let table:UITableView = {
@@ -27,7 +55,8 @@ class View: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(selectView)
+        backgroundColor = .white
+        addSubview(items)
         addSubview(table)
         autoLayout()
     }
@@ -37,14 +66,15 @@ class View: UIView {
     }
     
     private func autoLayout(){
-        selectView.snp.makeConstraints { make in
+        items.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(150)
-            make.right.left.equalToSuperview()
+            make.height.equalTo(100)
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-20)
         }
         
         table.snp.makeConstraints { make in
-            make.top.equalTo(selectView.snp.bottom)
+            make.top.equalTo(items.snp.bottom)
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
