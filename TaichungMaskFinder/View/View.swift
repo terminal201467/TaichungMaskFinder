@@ -48,7 +48,7 @@ class View: UIView {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
-        tableView.rowHeight = 100
+        tableView.rowHeight = 150
         tableView.backgroundColor = .white
         return tableView
     }()

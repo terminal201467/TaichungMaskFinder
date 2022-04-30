@@ -20,7 +20,7 @@ class TableViewCell: UITableViewCell {
     
     private let name:UILabel = {
         let label = UILabel()
-        label.textColor = .green
+        label.textColor = .orange
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
@@ -93,7 +93,7 @@ class TableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 3
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -113,23 +113,25 @@ class TableViewCell: UITableViewCell {
     
     private func autoLayout(){
         name.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(40)
             make.centerY.equalToSuperview()
+            make.width.equalTo(80)
         }
         
         location.snp.makeConstraints { make in
-            make.bottom.equalTo(name.snp.top)
-            make.centerY.equalTo(name.snp.centerY)
+            make.centerX.equalTo(name.snp.centerX)
+            make.bottom.equalTo(name.snp.top).offset(-10)
         }
         
         maskKind.snp.makeConstraints { make in
-            make.left.equalTo(name.snp.right)
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-40)
+            make.left.equalTo(location.snp.right).offset(20)
         }
         
         info.snp.makeConstraints { make in
             make.left.equalTo(maskKind.snp.left)
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-20)
         }
     }
     
@@ -137,11 +139,11 @@ class TableViewCell: UITableViewCell {
         name.text = data.properties.name
         county.text = data.properties.county
         town.text = data.properties.town
-        maskAdult.text = "\(data.properties.mask_adult)"
-        maskChild.text = "\(data.properties.mask_child)"
-        phone.text = data.properties.phone
-        adress.text = data.properties.address
-        note.text = data.properties.note
+        maskAdult.text = "成人口罩數量：\(data.properties.mask_adult)"
+        maskChild.text = "孩童口罩數量：\(data.properties.mask_child)"
+        phone.text = "電話：" + data.properties.phone
+        adress.text = "地址：" + data.properties.address
+        note.text = "時間：" + data.properties.note
     }
 
 }
