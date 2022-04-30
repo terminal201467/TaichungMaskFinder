@@ -14,6 +14,7 @@
 		97D8C46C281B828E005E21C0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46B281B828E005E21C0 /* TableViewCell.swift */; };
 		97D8C46E281BB474005E21C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46D281BB474005E21C0 /* Enums.swift */; };
 		97D8C470281D5192005E21C0 /* SentenceEveryDayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46F281D5192005E21C0 /* SentenceEveryDayController.swift */; };
+		97D8C473281D52D2005E21C0 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 97D8C472281D52D2005E21C0 /* Kanna */; };
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D8C473281D52D2005E21C0 /* Kanna in Frameworks */,
 				97F40A062817C8F700527646 /* Alamofire in Frameworks */,
 				97D8C46A281B81F1005E21C0 /* SnapKit in Frameworks */,
 			);
@@ -146,6 +148,7 @@
 			packageProductDependencies = (
 				97F40A052817C8F700527646 /* Alamofire */,
 				97D8C469281B81F1005E21C0 /* SnapKit */,
+				97D8C472281D52D2005E21C0 /* Kanna */,
 			);
 			productName = TaichungMaskFinder;
 			productReference = 97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */;
@@ -178,6 +181,7 @@
 			packageReferences = (
 				97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				97D8C468281B81F1005E21C0 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				97D8C471281D52D1005E21C0 /* XCRemoteSwiftPackageReference "Kanna" */,
 			);
 			productRefGroup = 97F409EB2817C8AB00527646 /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,14 @@
 				kind = branch;
 			};
 		};
+		97D8C471281D52D1005E21C0 /* XCRemoteSwiftPackageReference "Kanna" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tid-kijyun/Kanna";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		97F40A042817C8F700527646 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -451,6 +463,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 97D8C468281B81F1005E21C0 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		97D8C472281D52D2005E21C0 /* Kanna */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97D8C471281D52D1005E21C0 /* XCRemoteSwiftPackageReference "Kanna" */;
+			productName = Kanna;
 		};
 		97F40A052817C8F700527646 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
