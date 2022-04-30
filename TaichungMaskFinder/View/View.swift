@@ -35,12 +35,20 @@ class View: UIView {
         stackView.backgroundColor = .white
         return stackView
     }()
-    
+
+    let inputCounty:UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "輸入城市"
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
     let table:UITableView = {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
-        tableView.rowHeight = 150
+        tableView.rowHeight = 200
         tableView.backgroundColor = .white
         return tableView
     }()
@@ -48,6 +56,7 @@ class View: UIView {
     let areaSelector:UIPickerView = {
         let pickView = UIPickerView()
         pickView.backgroundColor = .white
+        pickView.becomeFirstResponder()
         return pickView
     }()
     
@@ -55,8 +64,8 @@ class View: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         addSubview(items)
+        addSubview(inputCounty)
         addSubview(table)
-//        addSubview(areaSelector)
         autoLayout()
     }
     
@@ -69,6 +78,13 @@ class View: UIView {
             make.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(100)
             make.centerX.equalToSuperview().offset(-100)
+        }
+        
+        inputCounty.snp.makeConstraints { make in
+            make.centerY.equalTo(items.snp.centerY)
+            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(100)
+            make.height.equalTo(30)
         }
         
         table.snp.makeConstraints { make in

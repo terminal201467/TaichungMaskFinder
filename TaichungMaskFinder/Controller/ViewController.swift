@@ -33,7 +33,6 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .blue
         self.navigationItem.rightBarButtonItem = chooseMask
-
     }
     
     @objc func choose(){
@@ -57,8 +56,32 @@ class ViewController: UIViewController {
     }
     
     private func setPickView(){
+        let doneButton = UIBarButtonItem(title: "確認", style: .plain, target: self, action: #selector(correct))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancel))
+        let toolBar:UIToolbar = {
+           let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = .systemBlue
+            toolBar.sizeToFit()
+            toolBar.isUserInteractionEnabled = true
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            return toolBar
+        }()
         maskView.areaSelector.delegate = self
         maskView.areaSelector.dataSource = self
+        maskView.inputCounty.inputView = maskView.areaSelector
+        maskView.inputCounty.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc func correct(){
+        maskView.areaSelector.resignFirstResponder()
+    }
+    
+    @objc func cancel(){
+        maskView.areaSelector.resignFirstResponder()
     }
 }
 

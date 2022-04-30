@@ -55,7 +55,6 @@ class TableViewCell: UITableViewCell {
         return label
     }()
 
-    
     private let town:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -139,11 +138,10 @@ class TableViewCell: UITableViewCell {
         name.text = data.properties.name
         county.text = data.properties.county
         town.text = data.properties.town
-        maskAdult.text = "成人口罩數量：\(data.properties.mask_adult)"
-        maskChild.text = "孩童口罩數量：\(data.properties.mask_child)"
+        maskAdult.text = "成人口罩：\(data.properties.mask_adult)"
+        maskChild.text = "孩童口罩：\(data.properties.mask_child)"
         phone.text = "電話：" + data.properties.phone
         adress.text = "地址：" + data.properties.address
         note.text = "時間：" + data.properties.note
     }
-
 }
