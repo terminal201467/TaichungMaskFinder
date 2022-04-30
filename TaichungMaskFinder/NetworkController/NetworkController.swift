@@ -22,18 +22,26 @@ class NetworkController: NSObject {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var selectArea:String = ""{
+        didSet{
+//            filterCunli(cunli: self.selectArea)
+        }
+    }
+    
     var taichungData:[MaskGeoData.Feature.Properties] = []{
         didSet{
             valueChanged?()
 //            print("taichungData:",taichungData)
 //            taichungData.map{insertObject(feature: $0)}
+            
+            //This place can update the allData
         }
     }
     
     var getNetworksData:[MaskGeoData.Feature] = []{
         didSet{
             valueChanged?()
-            filter(county: "臺中市")
+            countyfilter(county:"臺中市")
         }
     }
     
@@ -42,7 +50,7 @@ class NetworkController: NSObject {
     //MARK:-Properties
     var container:NSPersistentContainer!
     
-    let baseURL:String = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
+    private let baseURL:String = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
 
     //MARK:-GetMethod
     func getData(){
@@ -61,11 +69,20 @@ class NetworkController: NSObject {
         }
     }
     
-    func filter(county:String){
+    func countyfilter(county:String){
         for data in getNetworksData{
-            if data.properties.county == county{
+            if data.properties.county == county {
 //                print("\(county)資料:",data.properties)
                 taichungData.append(data.properties)
+            }
+        }
+    }
+    
+    func filterTown(town:String){
+        for data in taichungData{
+            if data.town == town{
+                taichungData.removeAll()
+                taichungData.append(data)
             }
         }
     }
@@ -152,11 +169,22 @@ class NetworkController: NSObject {
     
     //MARK:-AlamoGetData
     func numberOfRowsInSection(_ section:Int)->Int{
-        return getNetworksData.count
+        return taichungData.count
     }
     
-    func getData(_ indexPath:IndexPath)->MaskGeoData.Feature{
-        return getNetworksData[indexPath.row]
+    func getData(_ indexPath:IndexPath)->MaskGeoData.Feature.Properties{
+        return taichungData[indexPath.row]
+    }
+    
+    //MARK:PickView
+    func numberOfRowsInComponent(_ component:Int)->Int{
+//        print("村里數：",taichungData.map{$0.cunli}.count)
+        return taichungData.count == 0 ? 0 : taichungData.map{$0.town}.count
+    }
+    
+    func titleForRow(_ row:Int)->String{
+//        print("村里：",taichungData[row].cunli)
+        return taichungData.count == 0 ? "沒有區域" : taichungData[row].town
     }
 }
 

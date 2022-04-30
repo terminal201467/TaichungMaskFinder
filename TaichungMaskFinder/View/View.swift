@@ -41,6 +41,7 @@ class View: UIView {
         textField.placeholder = "輸入城市"
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
 

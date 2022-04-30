@@ -134,14 +134,14 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-    func configure(data:MaskGeoData.Feature){
-        name.text = data.properties.name
-        county.text = data.properties.county
-        town.text = data.properties.town
-        maskAdult.text = "成人口罩：\(data.properties.mask_adult)"
-        maskChild.text = "孩童口罩：\(data.properties.mask_child)"
-        phone.text = "電話：" + data.properties.phone
-        adress.text = "地址：" + data.properties.address
-        note.text = "時間：" + data.properties.note
+    func configure(data:MaskGeoData.Feature.Properties){
+        name.text = data.name
+        county.text = data.county
+        town.text = data.town
+        maskAdult.text = "成人口罩：\(data.mask_adult)"
+        maskChild.text = "孩童口罩：\(data.mask_child)"
+        phone.text = "電話：" + data.phone
+        adress.text = "地址：" + data.address
+        note.text = "時間：" + data.note
     }
 }

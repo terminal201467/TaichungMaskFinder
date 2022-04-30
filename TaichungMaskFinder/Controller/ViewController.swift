@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         setNetwork()
         setTable()
         setPickView()
+        setTextField()
     }
     
     private func setNavigationBar(){
@@ -36,8 +37,9 @@ class ViewController: UIViewController {
     }
     
     @objc func choose(){
-        //PickView
-        print("PickView")
+        print("篩選")
+        maskView.table.reloadData()
+        network.filterTown(town: network.selectArea)
     }
     
     private func setNetwork(){
@@ -73,16 +75,22 @@ class ViewController: UIViewController {
         maskView.areaSelector.dataSource = self
         maskView.inputCounty.inputView = maskView.areaSelector
         maskView.inputCounty.inputAccessoryView = toolBar
-        
     }
     
     @objc func correct(){
-        maskView.areaSelector.resignFirstResponder()
+        maskView.inputCounty.text = network.selectArea
+        maskView.inputCounty.resignFirstResponder()
     }
     
     @objc func cancel(){
-        maskView.areaSelector.resignFirstResponder()
+        maskView.inputCounty.text = ""
+        maskView.inputCounty.resignFirstResponder()
     }
+    
+    private func setTextField(){
+        maskView.inputCounty.delegate = self
+    }
+    
 }
 
 extension ViewController:UITableViewDelegate,UITableViewDataSource{
@@ -103,7 +111,31 @@ extension ViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return AreaSelect.allCases.count
+        return network.numberOfRowsInComponent(component)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return network.titleForRow(row)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        print("row",network.titleForRow(row))
+        network.selectArea = network.titleForRow(row)
+    }
+}
+
+extension ViewController:UITextFieldDelegate{
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        print("editing:")
+//        network.taichungData.removeAll()
+//        network.getData()
+//    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        print("clear")
+        network.taichungData.removeAll()
+        network.getData()
+        return true
     }
 }
 
