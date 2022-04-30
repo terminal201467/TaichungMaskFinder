@@ -13,6 +13,7 @@
 		97D8C46A281B81F1005E21C0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97D8C469281B81F1005E21C0 /* SnapKit */; };
 		97D8C46C281B828E005E21C0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46B281B828E005E21C0 /* TableViewCell.swift */; };
 		97D8C46E281BB474005E21C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46D281BB474005E21C0 /* Enums.swift */; };
+		97D8C470281D5192005E21C0 /* SentenceEveryDayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46F281D5192005E21C0 /* SentenceEveryDayController.swift */; };
 		97F409EE2817C8AB00527646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409ED2817C8AB00527646 /* AppDelegate.swift */; };
 		97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409EF2817C8AB00527646 /* SceneDelegate.swift */; };
 		97F409F22817C8AB00527646 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F409F12817C8AB00527646 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 		97D8C460281A2799005E21C0 /* MaskData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97D8C46B281B828E005E21C0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		97D8C46D281BB474005E21C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		97D8C46F281D5192005E21C0 /* SentenceEveryDayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceEveryDayController.swift; sourceTree = "<group>"; };
 		97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungMaskFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F409ED2817C8AB00527646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F409EF2817C8AB00527646 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				97F40A0B2817C97C00527646 /* NetworkController.swift */,
+				97D8C46F281D5192005E21C0 /* SentenceEveryDayController.swift */,
 			);
 			path = NetworkController;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */,
 				97F409F02817C8AB00527646 /* SceneDelegate.swift in Sources */,
 				97D8C462281A2799005E21C0 /* MaskData+CoreDataProperties.swift in Sources */,
+				97D8C470281D5192005E21C0 /* SentenceEveryDayController.swift in Sources */,
 				97D8C46E281BB474005E21C0 /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
