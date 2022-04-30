@@ -103,6 +103,13 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         cell.configure(data: network.getData(indexPath))
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            network.deleteRow(indexPath)
+            maskView.table.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 extension ViewController:UIPickerViewDelegate,UIPickerViewDataSource{
@@ -133,7 +140,7 @@ extension ViewController:UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
-        network.taichungData.removeAll()
+//        network.taichungData.removeAll()
         network.getData()
         return true
     }

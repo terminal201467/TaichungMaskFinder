@@ -28,7 +28,7 @@ class NetworkController: NSObject {
         }
     }
     
-    var taichungData:[MaskGeoData.Feature.Properties] = []{
+    private var taichungData:[MaskGeoData.Feature.Properties] = []{
         didSet{
             valueChanged?()
 //            print("taichungData:",taichungData)
@@ -186,6 +186,12 @@ class NetworkController: NSObject {
 //        print("村里：",taichungData[row].cunli)
         return taichungData.count == 0 ? "沒有區域" : taichungData[row].town
     }
+    
+    func deleteRow(_ indexPath:IndexPath){
+        //the coreData need to delete data here
+        taichungData.remove(at: indexPath.row)
+    }
+    
 }
 
 extension NSPersistentContainer{

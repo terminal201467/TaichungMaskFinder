@@ -38,7 +38,7 @@ class View: UIView {
 
     let inputCounty:UITextField = {
         let textField = UITextField()
-        textField.placeholder = "輸入城市"
+        textField.placeholder = "輸入區域"
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
         textField.clearButtonMode = .whileEditing
@@ -51,6 +51,7 @@ class View: UIView {
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = 200
         tableView.backgroundColor = .white
+        tableView.allowsSelection = false
         return tableView
     }()
     
