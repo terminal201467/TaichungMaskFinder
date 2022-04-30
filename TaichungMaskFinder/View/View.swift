@@ -18,14 +18,6 @@ class View: UIView {
         return label
     }()
     
-    private let maskKind:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.text = ItemName.maskKind.text
-        label.font = UIFont.systemFont(ofSize: TiteSize.title.Size)
-        return label
-    }()
-    
     private let infoItem:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -35,11 +27,11 @@ class View: UIView {
     }()
     
     private lazy var items:UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [pharmacyName,maskKind,infoItem])
-        stackView.distribution = .fillProportionally
+        let stackView = UIStackView(arrangedSubviews: [pharmacyName,infoItem])
+        stackView.distribution = .fill
         stackView.alignment = .fill
         stackView.axis = .horizontal
-        stackView.spacing = 3
+        stackView.spacing = 25
         stackView.backgroundColor = .white
         return stackView
     }()
@@ -64,7 +56,7 @@ class View: UIView {
         backgroundColor = .white
         addSubview(items)
         addSubview(table)
-        addSubview(areaSelector)
+//        addSubview(areaSelector)
         autoLayout()
     }
     
@@ -76,8 +68,7 @@ class View: UIView {
         items.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(100)
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-20)
+            make.centerX.equalToSuperview().offset(-100)
         }
         
         table.snp.makeConstraints { make in
