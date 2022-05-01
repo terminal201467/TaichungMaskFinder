@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         setTable()
         setPickView()
         setTextField()
+        print("資料：",network.localData)
     }
     
     private func setNavigationBar(){
@@ -45,7 +46,6 @@ class ViewController: UIViewController {
     private func setNetwork(){
         network.getData()
         network.valueChanged = {
-//            print("台中:",self.network.taichungData.count)
             DispatchQueue.main.async {
                 self.maskView.table.reloadData()
             }

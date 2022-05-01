@@ -20,7 +20,10 @@ class NetworkController: NSObject {
     //MARK:-Binding
     var valueChanged:(()->Void)?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //MARK:-Properties
+    var container:NSPersistentContainer!
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var selectArea:String = ""{
         didSet{
@@ -32,23 +35,27 @@ class NetworkController: NSObject {
         didSet{
             valueChanged?()
 //            print("taichungData:",taichungData)
+            
 //            taichungData.map{insertObject(feature: $0)}
             
-            //This place can update the allData
+            self.townData = taichungData.map{$0.town}.sorted().removingDuplicates()
         }
     }
     
     var getNetworksData:[MaskGeoData.Feature] = []{
         didSet{
             valueChanged?()
-            countyfilter(county:"臺中市")
+            filterCounty(county:"臺中市")
         }
     }
     
-    var localData:[MaskData] = []
+    var localData:[MaskData] = []{
+        didSet{
+            valueChanged?()
+        }
+    }
     
-    //MARK:-Properties
-    var container:NSPersistentContainer!
+    var townData:[String] = []
     
     private let baseURL:String = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
 
@@ -61,7 +68,7 @@ class NetworkController: NSObject {
                 do{
                     let decode = try JSONDecoder().decode(MaskGeoData.self, from: data)
                     self.getNetworksData = decode.features
-                    print("數量：",self.getNetworksData.count)
+//                    print("數量：",self.getNetworksData.count)
                 }catch{
                     print("error:",error.localizedDescription)
                 }
@@ -69,7 +76,7 @@ class NetworkController: NSObject {
         }
     }
     
-    func countyfilter(county:String){
+    func filterCounty(county:String){
         for data in getNetworksData{
             if data.properties.county == county {
 //                print("\(county)資料:",data.properties)
@@ -121,6 +128,7 @@ class NetworkController: NSObject {
         member.update = feature.updated
         do{
             try self.context.save()
+            print("Save")
         }catch{
             fatalError("\(error)")
         }
@@ -179,17 +187,26 @@ class NetworkController: NSObject {
     //MARK:PickView
     func numberOfRowsInComponent(_ component:Int)->Int{
 //        print("村里數：",taichungData.map{$0.cunli}.count)
-        return taichungData.count == 0 ? 0 : taichungData.map{$0.town}.count
+        return townData.count == 0 ? 0 : townData.count
     }
     
     func titleForRow(_ row:Int)->String{
 //        print("村里：",taichungData[row].cunli)
-        return taichungData.count == 0 ? "沒有區域" : taichungData[row].town
+        return townData.count == 0 ? "沒有區域" : townData[row]
     }
     
     func deleteRow(_ indexPath:IndexPath){
         //the coreData need to delete data here
         taichungData.remove(at: indexPath.row)
+    }
+    
+    //MARK:-MaskData
+    func numberOfRowInSectionFromLocel(_ section:Int)->Int{
+        return localData.count
+    }
+    
+    func getData(_ indexPath:IndexPath)->MaskData{
+        return localData[indexPath.row]
     }
     
 }
