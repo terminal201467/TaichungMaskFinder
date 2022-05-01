@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum ItemName:Int{
     case pharmacy = 0,maskKind,info,area
     var text:String{

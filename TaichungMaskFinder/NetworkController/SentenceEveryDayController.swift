@@ -12,6 +12,8 @@ class SentenceEveryDayController{
     
     var valueChanged:(()->Void)?
     
+    private let baseURL:String = "https://tw.feature.appledaily.com/collection/dailyquote"
+    
     func getData(){
         
         

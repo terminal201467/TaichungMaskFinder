@@ -75,19 +75,20 @@ class NetworkController: NSObject {
     func filterCounty(county:String){
         for data in getNetworksData{
             if data.properties.county == county {
-//                print("\(county)資料:",data.properties)
                 taichungData.append(data.properties)
             }
         }
     }
     
     func filterTown(town:String){
+        var filterData:[MaskGeoData.Feature.Properties] = []
         for data in taichungData{
             if data.town == town{
                 taichungData.removeAll()
-                taichungData.append(data)
+                filterData.append(data)
             }
         }
+        taichungData = filterData
     }
     
     //MARK:-SelectObject

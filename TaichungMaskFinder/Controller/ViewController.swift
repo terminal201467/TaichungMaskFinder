@@ -39,8 +39,8 @@ class ViewController: UIViewController {
     
     @objc func choose(){
         print("篩選")
-        maskView.table.reloadData()
         network.filterTown(town: network.selectArea)
+        maskView.table.reloadData()
     }
     
     private func setNetwork(){
@@ -141,6 +141,8 @@ extension ViewController:UITextFieldDelegate{
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
 //        network.taichungData.removeAll()
+        textField.resignFirstResponder()
+        maskView.inputCounty.resignFirstResponder()
         network.getData()
         return true
     }
