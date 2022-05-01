@@ -192,6 +192,10 @@ class NetworkController: NSObject {
         return townData.count == 0 ? "沒有區域" : townData[row]
     }
     
+    func removeTaichungData(){
+        taichungData.removeAll()
+    }
+    
     func deleteRow(_ indexPath:IndexPath){
         //the coreData need to delete data here
         taichungData.remove(at: indexPath.row)

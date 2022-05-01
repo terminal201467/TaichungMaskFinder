@@ -85,6 +85,8 @@ class ViewController: UIViewController {
     @objc func cancel(){
         maskView.inputCounty.text = ""
         maskView.inputCounty.resignFirstResponder()
+        network.removeTaichungData()
+        network.getData()
     }
     
     private func setTextField(){
@@ -141,8 +143,9 @@ extension ViewController:UITextFieldDelegate{
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
 //        network.taichungData.removeAll()
-        textField.resignFirstResponder()
-        maskView.inputCounty.resignFirstResponder()
+//        textField.resignFirstResponder()
+        cancel()
+//        maskView.inputCounty.resignFirstResponder()
         network.getData()
         return true
     }
