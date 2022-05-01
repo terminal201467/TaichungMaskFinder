@@ -34,10 +34,6 @@ class NetworkController: NSObject {
     private var taichungData:[MaskGeoData.Feature.Properties] = []{
         didSet{
             valueChanged?()
-//            print("taichungData:",taichungData)
-            
-//            taichungData.map{insertObject(feature: $0)}
-            
             self.townData = taichungData.map{$0.town}.sorted().removingDuplicates()
         }
     }

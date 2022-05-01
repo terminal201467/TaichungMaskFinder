@@ -10,6 +10,8 @@
 		97A611E5281E7E2E00E7C926 /* MaskData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A611E3281E7E2E00E7C926 /* MaskData+CoreDataClass.swift */; };
 		97A611E6281E7E2E00E7C926 /* MaskData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A611E4281E7E2E00E7C926 /* MaskData+CoreDataProperties.swift */; };
 		97A611E8281E849500E7C926 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A611E7281E849500E7C926 /* Extensions.swift */; };
+		97A611F9281E952900E7C926 /* TaichungMaskFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A611F8281E952900E7C926 /* TaichungMaskFinderTests.swift */; };
+		97A61200281E959200E7C926 /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A611FF281E959200E7C926 /* APITest.swift */; };
 		97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */; };
 		97D8C46A281B81F1005E21C0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97D8C469281B81F1005E21C0 /* SnapKit */; };
 		97D8C46C281B828E005E21C0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8C46B281B828E005E21C0 /* TableViewCell.swift */; };
@@ -27,10 +29,23 @@
 		97F40A1628192E1F00527646 /* MaskGeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* MaskGeoData.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		97A611FA281E952900E7C926 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97F409E22817C8AB00527646 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97F409E92817C8AB00527646;
+			remoteInfo = TaichungMaskFinder;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		97A611E3281E7E2E00E7C926 /* MaskData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		97A611E4281E7E2E00E7C926 /* MaskData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97A611E7281E849500E7C926 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		97A611F6281E952900E7C926 /* TaichungMaskFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaichungMaskFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97A611F8281E952900E7C926 /* TaichungMaskFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaichungMaskFinderTests.swift; sourceTree = "<group>"; };
+		97A611FF281E959200E7C926 /* APITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
 		97D8C45328196677005E21C0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		97D8C46B281B828E005E21C0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		97D8C46D281BB474005E21C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -48,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		97A611F3281E952900E7C926 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97F409E72817C8AB00527646 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,12 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97A611F7281E952900E7C926 /* TaichungMaskFinderTests */ = {
+			isa = PBXGroup;
+			children = (
+				97A611FF281E959200E7C926 /* APITest.swift */,
+				97A611F8281E952900E7C926 /* TaichungMaskFinderTests.swift */,
+			);
+			path = TaichungMaskFinderTests;
+			sourceTree = "<group>";
+		};
 		97F409E12817C8AB00527646 = {
 			isa = PBXGroup;
 			children = (
 				97A611E3281E7E2E00E7C926 /* MaskData+CoreDataClass.swift */,
 				97A611E4281E7E2E00E7C926 /* MaskData+CoreDataProperties.swift */,
 				97F409EC2817C8AB00527646 /* TaichungMaskFinder */,
+				97A611F7281E952900E7C926 /* TaichungMaskFinderTests */,
 				97F409EB2817C8AB00527646 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				97F409EA2817C8AB00527646 /* TaichungMaskFinder.app */,
+				97A611F6281E952900E7C926 /* TaichungMaskFinderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,9 +121,9 @@
 				97F40A0E28184D2300527646 /* Controller */,
 				97F40A0F28184D3500527646 /* View */,
 				97F40A1028184D4500527646 /* NetworkController */,
-				97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */,
 				97F409F92817C8AD00527646 /* Assets.xcassets */,
 				97F409FE2817C8AD00527646 /* Info.plist */,
+				97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */,
 				97D8C45228196677005E21C0 /* DataModel.xcdatamodeld */,
 			);
 			path = TaichungMaskFinder;
@@ -135,6 +168,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		97A611F5281E952900E7C926 /* TaichungMaskFinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97A611FC281E952900E7C926 /* Build configuration list for PBXNativeTarget "TaichungMaskFinderTests" */;
+			buildPhases = (
+				97A611F2281E952900E7C926 /* Sources */,
+				97A611F3281E952900E7C926 /* Frameworks */,
+				97A611F4281E952900E7C926 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97A611FB281E952900E7C926 /* PBXTargetDependency */,
+			);
+			name = TaichungMaskFinderTests;
+			productName = TaichungMaskFinderTests;
+			productReference = 97A611F6281E952900E7C926 /* TaichungMaskFinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		97F409E92817C8AB00527646 /* TaichungMaskFinder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97F40A012817C8AD00527646 /* Build configuration list for PBXNativeTarget "TaichungMaskFinder" */;
@@ -167,6 +218,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					97A611F5281E952900E7C926 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 97F409E92817C8AB00527646;
+					};
 					97F409E92817C8AB00527646 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -191,11 +246,19 @@
 			projectRoot = "";
 			targets = (
 				97F409E92817C8AB00527646 /* TaichungMaskFinder */,
+				97A611F5281E952900E7C926 /* TaichungMaskFinderTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		97A611F4281E952900E7C926 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97F409E82817C8AB00527646 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,6 +271,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		97A611F2281E952900E7C926 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97A61200281E959200E7C926 /* APITest.swift in Sources */,
+				97A611F9281E952900E7C926 /* TaichungMaskFinderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97F409E62817C8AB00527646 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +302,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		97A611FB281E952900E7C926 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97F409E92817C8AB00527646 /* TaichungMaskFinder */;
+			targetProxy = 97A611FA281E952900E7C926 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		97F409FB2817C8AD00527646 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -242,6 +322,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		97A611FD281E952900E7C926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QRA5DG5SAD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = testing.TaichungMaskFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaichungMaskFinder.app/TaichungMaskFinder";
+			};
+			name = Debug;
+		};
+		97A611FE281E952900E7C926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QRA5DG5SAD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = testing.TaichungMaskFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaichungMaskFinder.app/TaichungMaskFinder";
+			};
+			name = Release;
+		};
 		97F409FF2817C8AD00527646 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -415,6 +531,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		97A611FC281E952900E7C926 /* Build configuration list for PBXNativeTarget "TaichungMaskFinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97A611FD281E952900E7C926 /* Debug */,
+				97A611FE281E952900E7C926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		97F409E52817C8AB00527646 /* Build configuration list for PBXProject "TaichungMaskFinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
