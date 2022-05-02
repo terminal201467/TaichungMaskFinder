@@ -7,8 +7,8 @@
         <attribute name="cunli" optional="YES" attributeType="String"/>
         <attribute name="custom_note" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="mask_adult" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mask_child" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mask_adult" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mask_child" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>

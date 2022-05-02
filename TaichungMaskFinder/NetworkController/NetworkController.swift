@@ -15,21 +15,28 @@ import SwiftUI
 //抓取資料來源的每日一句一併顯示於畫面上
 //程式架構須符合 MVC-n
 
-class NetworkController: NSObject {
+class NetworkController: NSObject{
     
     //MARK:-Binding
     var valueChanged:(()->Void)?
     
     //MARK:-Properties
-    var container:NSPersistentContainer!
+    private var container:NSPersistentContainer!
     
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    private let fetchRequest:NSFetchRequest<MaskData> = MaskData.fetchRequest()
     
-    var selectArea:String = ""{
-        didSet{
-//            filterCunli(cunli: self.selectArea)
-        }
-    }
+    private let sortDescription = NSSortDescriptor(key: "name", ascending: true)
+    
+    private var fetchResultController:NSFetchedResultsController<MaskData>!
+    
+    //MARK:-GCD
+    let serialQueue:DispatchQueue = DispatchQueue(label: "SerialQueue")
+    
+    //MARK:-searchData
+    
+    public var selectArea:String = ""
     
     private var taichungData:[MaskGeoData.Feature.Properties] = []{
         didSet{
@@ -38,32 +45,24 @@ class NetworkController: NSObject {
         }
     }
     
-    var getNetworksData:[MaskGeoData.Feature] = []{
-        didSet{
-            filterCounty(county:"臺中市")
-        }
-    }
-    
-    var localData:[MaskData] = []{
-        didSet{
-            valueChanged?()
-        }
-    }
-    
     var townData:[String] = []
+    
+    var localData:[MaskData] = []
     
     private let baseURL:String = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
 
     //MARK:-GetMethod
-    func getData(){
+    func loadData(){
         AF.request(baseURL).responseJSON { response in
             debugPrint("Status:\(response.response?.statusCode)")
             if let data = response.data{
                 print("data:",data)
                 do{
                     let decode = try JSONDecoder().decode(MaskGeoData.self, from: data)
-                    self.getNetworksData = decode.features
-//                    print("數量：",self.getNetworksData.count)
+                    print("DB:",NSPersistentContainer.defaultDirectoryURL)
+                    self.serialQueue.async {
+                        self.filterCounty(loadData: decode, county: "臺中市")
+                    }
                 }catch{
                     print("error:",error.localizedDescription)
                 }
@@ -71,10 +70,11 @@ class NetworkController: NSObject {
         }
     }
     
-    func filterCounty(county:String){
-        for data in getNetworksData{
+    func filterCounty(loadData:MaskGeoData,county:String){
+        for data in loadData.features{
             if data.properties.county == county {
                 taichungData.append(data.properties)
+                insertObject(feature: data.properties)
             }
         }
     }
@@ -95,7 +95,7 @@ class NetworkController: NSObject {
         var array:[MaskData] = []
         let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
         do{
-            let results = try self.context.fetch(request)
+            let results = try self.appDelegate.persistentContainer.viewContext.fetch(request)
             for result in results { array.append(result) }
         }catch{
             fatalError("Failed to fetch data: \(error.localizedDescription)")
@@ -105,7 +105,7 @@ class NetworkController: NSObject {
     
     //MARK:-InsertObject
     func insertObject(feature:MaskGeoData.Feature.Properties){
-        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskData", into: self.context) as! MaskData
+        let member = NSEntityDescription.insertNewObject(forEntityName: "MaskData", into: appDelegate.persistentContainer.viewContext) as! MaskData
         member.id = feature.id
         member.address = feature.address
         member.available = feature.available
@@ -123,7 +123,7 @@ class NetworkController: NSObject {
         member.name = feature.name
         member.update = feature.updated
         do{
-            try self.context.save()
+            try self.appDelegate.persistentContainer.viewContext.save()
             print("Save")
         }catch{
             fatalError("\(error)")
@@ -134,60 +134,42 @@ class NetworkController: NSObject {
     //MARK:-DeleteObject
     func deleteObject(indexPath:IndexPath){
         let request:NSFetchRequest<MaskData> = MaskData.fetchRequest()
-        context.delete(localData[indexPath.row])
+        appDelegate.persistentContainer.viewContext.delete(localData[indexPath.row])
         do{
-            let results = try self.context.fetch(request)
-            try self.context.save()
+            let results = try self.appDelegate.persistentContainer.viewContext.fetch(request)
+            try self.appDelegate.persistentContainer.viewContext.save()
         }catch{
             fatalError("Failed to fetch data: \(error)")
         }
     }
     
-    //MARK:-updateObject
-    func updateObject(indexPath:IndexPath){
-        let request = NSFetchRequest<MaskData>(entityName: "MaskData")
+    func saveObject(){
+        fetchRequest.sortDescriptors = [sortDescription]
+        fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultController.delegate = self
         do{
-            let results = try self.context.fetch(request)
-            results.map { data in
-                data.id = localData[indexPath.row].id
-                data.name = localData[indexPath.row].name
-                data.address = localData[indexPath.row].address
-                data.phone = localData[indexPath.row].phone
-                data.note = localData[indexPath.row].note
-                data.custom_note = localData[indexPath.row].custom_note
-                data.website = localData[indexPath.row].website
-                data.mask_adult = localData[indexPath.row].mask_adult
-                data.mask_child = localData[indexPath.row].mask_child
-                data.available = localData[indexPath.row].available
-                data.county = localData[indexPath.row].county
-                data.cunli = localData[indexPath.row].cunli
-                data.town = localData[indexPath.row].town
-                data.update = localData[indexPath.row].update
-                data.service_period = localData[indexPath.row].service_period
+            try fetchResultController.performFetch()
+            if let fetchObject = fetchResultController.fetchedObjects{
+                localData = fetchObject
             }
-            try self.context.save()
         }catch{
-            fatalError("Failed to fetch data: \(error)")
+            print(error)
         }
     }
     
-    //MARK:-AlamoGetData
     func numberOfRowsInSection(_ section:Int)->Int{
-        return taichungData.count
+        return localData.count
     }
     
-    func getData(_ indexPath:IndexPath)->MaskGeoData.Feature.Properties{
-        return taichungData[indexPath.row]
+    func getData(_ indexPath:IndexPath)->MaskData{
+        return localData[indexPath.row]
     }
-    
     //MARK:PickView
     func numberOfRowsInComponent(_ component:Int)->Int{
-//        print("村里數：",taichungData.map{$0.cunli}.count)
-        return townData.count == 0 ? 0 : townData.count
+        return localData.count == 0 ? 0 : localData.count
     }
     
     func titleForRow(_ row:Int)->String{
-//        print("村里：",taichungData[row].cunli)
         return townData.count == 0 ? "沒有區域" : townData[row]
     }
     
@@ -199,6 +181,7 @@ class NetworkController: NSObject {
     func deleteRow(_ indexPath:IndexPath){
         //the coreData need to delete data here
         taichungData.remove(at: indexPath.row)
+        deleteObject(indexPath: indexPath)
     }
     
     //MARK:-MaskData
@@ -206,7 +189,7 @@ class NetworkController: NSObject {
         return localData.count
     }
     
-    func getData(_ indexPath:IndexPath)->MaskData{
+    func getCellData(_ indexPath:IndexPath)->MaskData{
         return localData[indexPath.row]
     }
     
@@ -223,5 +206,20 @@ extension NSPersistentContainer{
             }
         }
     }
+}
+
+extension NetworkController:NSFetchedResultsControllerDelegate{
     
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        switch type{
+//        case .insert:
+//
+//        case .delete:
+//
+//        case .update:
+//
+//        default:
+//
+//        }
+//    }
 }

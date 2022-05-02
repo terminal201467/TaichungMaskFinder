@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         setTable()
         setPickView()
         setTextField()
-        print("資料：",network.localData)
+        print("資料：",network.localData.map{$0.name})
     }
     
     private func setNavigationBar(){
@@ -44,7 +44,10 @@ class ViewController: UIViewController {
     }
     
     private func setNetwork(){
-        network.getData()
+        network.saveObject()
+        if network.localData.isEmpty{
+            network.loadData()
+        }
         network.valueChanged = {
             DispatchQueue.main.async {
                 self.maskView.table.reloadData()
@@ -86,7 +89,7 @@ class ViewController: UIViewController {
         maskView.inputCounty.text = ""
         maskView.inputCounty.resignFirstResponder()
         network.removeTaichungData()
-        network.getData()
+        network.loadData()
     }
     
     private func setTextField(){
@@ -102,7 +105,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath)as! TableViewCell
-        cell.configure(data: network.getData(indexPath))
+        cell.configure(data: network.getCellData(indexPath))
         return cell
     }
     
@@ -147,7 +150,7 @@ extension ViewController:UITextFieldDelegate{
 //        textField.resignFirstResponder()
         self.cancel()
 //        maskView.inputCounty.resignFirstResponder()
-        network.getData()
+        network.loadData()
         return true
     }
 }
