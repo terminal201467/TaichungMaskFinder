@@ -10,6 +10,13 @@ import SnapKit
 
 class View: UIView {
     
+    let activityIndicator:UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        activityIndicator.color = .darkGray
+        return activityIndicator
+    }()
+    
     private let pharmacyName:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -76,6 +83,7 @@ class View: UIView {
         addSubview(inputCounty)
         addSubview(table)
         addSubview(everyDaySentece)
+        addSubview(activityIndicator)
         autoLayout()
     }
     
@@ -108,6 +116,10 @@ class View: UIView {
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+//        activityIndicator.snp.makeConstraints { make in
+//            make.center.equalTo(table.snp.center)
+//        }
     }
     
     

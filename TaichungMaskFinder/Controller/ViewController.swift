@@ -44,13 +44,15 @@ class ViewController: UIViewController {
     }
     
     private func setNetwork(){
-        network.saveObject()
+        network.loadLocalObject()
         if network.localData.isEmpty{
             network.loadData()
         }
         network.valueChanged = {
             DispatchQueue.main.async {
+                self.maskView.activityIndicator.startAnimating()
                 self.maskView.table.reloadData()
+                self.maskView.activityIndicator.stopAnimating()
             }
         }
     }
@@ -89,7 +91,7 @@ class ViewController: UIViewController {
         maskView.inputCounty.text = ""
         maskView.inputCounty.resignFirstResponder()
         network.removeTaichungData()
-        network.loadData()
+        network.loadLocalObject()
     }
     
     private func setTextField(){
@@ -131,26 +133,15 @@ extension ViewController:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        print("row",network.titleForRow(row))
         network.selectArea = network.titleForRow(row)
     }
 }
 
 extension ViewController:UITextFieldDelegate{
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        print("editing:")
-//        network.taichungData.removeAll()
-//        network.getData()
-//    }
-    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
-        //How to let the clear button can dismiss the inputAssessoryView
-//        network.taichungData.removeAll()
-//        textField.resignFirstResponder()
         self.cancel()
-//        maskView.inputCounty.resignFirstResponder()
-        network.loadData()
+        network.loadLocalObject()
         return true
     }
 }

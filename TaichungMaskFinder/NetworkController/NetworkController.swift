@@ -38,16 +38,16 @@ class NetworkController: NSObject{
     
     public var selectArea:String = ""
     
-    private var taichungData:[MaskGeoData.Feature.Properties] = []{
-        didSet{
-            valueChanged?()
-            self.townData = taichungData.map{$0.town}.sorted().removingDuplicates()
-        }
-    }
+    private var taichungData:[MaskGeoData.Feature.Properties] = []
     
     var townData:[String] = []
     
-    var localData:[MaskData] = []
+    var localData:[MaskData] = []{
+        didSet{
+            valueChanged?()
+            self.townData = localData.map{$0.town!}.sorted().removingDuplicates()
+        }
+    }
     
     private let baseURL:String = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
 
@@ -59,7 +59,7 @@ class NetworkController: NSObject{
                 print("data:",data)
                 do{
                     let decode = try JSONDecoder().decode(MaskGeoData.self, from: data)
-                    print("DB:",NSPersistentContainer.defaultDirectoryURL)
+//                    print("DB:",NSPersistentContainer.defaultDirectoryURL)
                     self.serialQueue.async {
                         self.filterCounty(loadData: decode, county: "臺中市")
                     }
@@ -80,14 +80,14 @@ class NetworkController: NSObject{
     }
     
     func filterTown(town:String){
-        var filterData:[MaskGeoData.Feature.Properties] = []
-        for data in taichungData{
+        var filterData:[MaskData] = []
+        for data in localData{
             if data.town == town{
-                taichungData.removeAll()
+                localData.removeAll()
                 filterData.append(data)
             }
         }
-        taichungData = filterData
+        localData = filterData
     }
     
     //MARK:-SelectObject
@@ -143,7 +143,7 @@ class NetworkController: NSObject{
         }
     }
     
-    func saveObject(){
+    func loadLocalObject(){
         fetchRequest.sortDescriptors = [sortDescription]
         fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchResultController.delegate = self
@@ -166,11 +166,11 @@ class NetworkController: NSObject{
     }
     //MARK:PickView
     func numberOfRowsInComponent(_ component:Int)->Int{
-        return localData.count == 0 ? 0 : localData.count
+        return townData.count == 0 ? 0 : townData.count
     }
     
     func titleForRow(_ row:Int)->String{
-        return townData.count == 0 ? "沒有區域" : townData[row]
+        return localData.count == 0 ? "沒有區域" : townData[row]
     }
     
     func removeTaichungData(){
