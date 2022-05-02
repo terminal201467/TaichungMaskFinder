@@ -41,8 +41,7 @@ struct MaskGeoData:Decodable{
     }
 }
 
-struct EveryDaySentence:Decodable{
-    let chinise:String
-    let english:String
+struct Sentence:Decodable{
+    let sentence:String
     let name:String
 }

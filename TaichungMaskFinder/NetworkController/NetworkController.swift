@@ -124,7 +124,7 @@ class NetworkController: NSObject{
         member.update = feature.updated
         do{
             try self.appDelegate.persistentContainer.viewContext.save()
-            print("Save")
+//            print("Save")
         }catch{
             fatalError("\(error)")
         }
@@ -143,6 +143,7 @@ class NetworkController: NSObject{
         }
     }
     
+    //MARK:-LoadLocalObject
     func loadLocalObject(){
         fetchRequest.sortDescriptors = [sortDescription]
         fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -157,6 +158,7 @@ class NetworkController: NSObject{
         }
     }
     
+    //MARK:-TableViewMethod
     func numberOfRowsInSection(_ section:Int)->Int{
         return localData.count
     }
@@ -164,7 +166,7 @@ class NetworkController: NSObject{
     func getData(_ indexPath:IndexPath)->MaskData{
         return localData[indexPath.row]
     }
-    //MARK:PickView
+    //MARK:PickViewMethod
     func numberOfRowsInComponent(_ component:Int)->Int{
         return townData.count == 0 ? 0 : townData.count
     }
@@ -179,7 +181,6 @@ class NetworkController: NSObject{
     }
     
     func deleteRow(_ indexPath:IndexPath){
-        //the coreData need to delete data here
         deleteObject(indexPath: indexPath)
         localData.remove(at: indexPath.row)
     }

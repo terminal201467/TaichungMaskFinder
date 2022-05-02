@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     private let network = NetworkController()
     
+    private let sentenceEveryDay = SentenceEveryDayController()
+    
     //MARK:-LifeCycle
     override func loadView() {
         super.loadView()
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
         setTable()
         setPickView()
         setTextField()
-        print("資料：",network.localData.map{$0.name})
+        sentenceEveryDay.loadData()
     }
     
     private func setNavigationBar(){
