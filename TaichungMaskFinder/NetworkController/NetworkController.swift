@@ -180,8 +180,8 @@ class NetworkController: NSObject{
     
     func deleteRow(_ indexPath:IndexPath){
         //the coreData need to delete data here
-        taichungData.remove(at: indexPath.row)
         deleteObject(indexPath: indexPath)
+        localData.remove(at: indexPath.row)
     }
     
     //MARK:-MaskData
