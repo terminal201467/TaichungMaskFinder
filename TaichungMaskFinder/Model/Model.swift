@@ -40,3 +40,9 @@ struct MaskGeoData:Decodable{
         }
     }
 }
+
+struct EveryDaySentence:Decodable{
+    let chinise:String
+    let english:String
+    let name:String
+}

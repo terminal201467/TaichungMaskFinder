@@ -26,7 +26,7 @@
 		97F40A062817C8F700527646 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F40A052817C8F700527646 /* Alamofire */; };
 		97F40A0A2817C93800527646 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A092817C93800527646 /* View.swift */; };
 		97F40A0C2817C97C00527646 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A0B2817C97C00527646 /* NetworkController.swift */; };
-		97F40A1628192E1F00527646 /* MaskGeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* MaskGeoData.swift */; };
+		97F40A1628192E1F00527646 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F40A1528192E1F00527646 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,7 @@
 		97F409FE2817C8AD00527646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F40A092817C93800527646 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		97F40A0B2817C97C00527646 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
-		97F40A1528192E1F00527646 /* MaskGeoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskGeoData.swift; sourceTree = "<group>"; };
+		97F40A1528192E1F00527646 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +132,7 @@
 		97F40A0D28184D1300527646 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				97F40A1528192E1F00527646 /* MaskGeoData.swift */,
+				97F40A1528192E1F00527646 /* Model.swift */,
 				97D8C46D281BB474005E21C0 /* Enums.swift */,
 				97A611E7281E849500E7C926 /* Extensions.swift */,
 			);
@@ -284,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97F40A1628192E1F00527646 /* MaskGeoData.swift in Sources */,
+				97F40A1628192E1F00527646 /* Model.swift in Sources */,
 				97F409F22817C8AB00527646 /* ViewController.swift in Sources */,
 				97F40A0A2817C93800527646 /* View.swift in Sources */,
 				97D8C45428196677005E21C0 /* DataModel.xcdatamodeld in Sources */,

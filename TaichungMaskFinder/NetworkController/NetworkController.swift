@@ -40,7 +40,6 @@ class NetworkController: NSObject {
     
     var getNetworksData:[MaskGeoData.Feature] = []{
         didSet{
-            valueChanged?()
             filterCounty(county:"臺中市")
         }
     }
@@ -194,6 +193,7 @@ class NetworkController: NSObject {
     
     func removeTaichungData(){
         taichungData.removeAll()
+        localData.removeAll()
     }
     
     func deleteRow(_ indexPath:IndexPath){

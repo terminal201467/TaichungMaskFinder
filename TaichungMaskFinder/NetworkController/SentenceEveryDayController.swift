@@ -7,6 +7,7 @@
 
 import Alamofire
 import Foundation
+import Kanna
 
 class SentenceEveryDayController{
     
@@ -15,8 +16,19 @@ class SentenceEveryDayController{
     private let baseURL:String = "https://tw.feature.appledaily.com/collection/dailyquote"
     
     func getData(){
+        AF.request(baseURL).responseString { response in
+            if let status = response.response?.statusCode{
+                print("status:",status)
+            }
+            if let html = response.value{
+                
+            }
+        }
         
-        
+    }
+    
+    func parsehtml(_ html:String){
+        var doc = try? Kanna.HTML(html: html, encoding: .utf8)
     }
     
     

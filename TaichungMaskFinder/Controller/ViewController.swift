@@ -142,9 +142,10 @@ extension ViewController:UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
+        //How to let the clear button can dismiss the inputAssessoryView
 //        network.taichungData.removeAll()
 //        textField.resignFirstResponder()
-        cancel()
+        self.cancel()
 //        maskView.inputCounty.resignFirstResponder()
         network.getData()
         return true

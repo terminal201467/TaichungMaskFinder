@@ -46,7 +46,7 @@ class View: UIView {
     }()
 
     let table:UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
+        let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = 200
@@ -62,12 +62,20 @@ class View: UIView {
         return pickView
     }()
     
+    let everyDaySentece:UIView = {
+       let view = UIView()
+        view.backgroundColor = .cyan
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         addSubview(items)
         addSubview(inputCounty)
         addSubview(table)
+        addSubview(everyDaySentece)
         autoLayout()
     }
     
@@ -76,6 +84,12 @@ class View: UIView {
     }
     
     private func autoLayout(){
+        everyDaySentece.snp.makeConstraints { make in
+            make.height.equalTo(120)
+            make.right.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
         items.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(100)
