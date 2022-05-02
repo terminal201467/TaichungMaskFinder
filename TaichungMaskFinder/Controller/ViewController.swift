@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         setTable()
         setPickView()
         setTextField()
-        sentenceEveryDay.loadData()
+        setSentenceController()
     }
     
     private func setNavigationBar(){
@@ -98,6 +98,19 @@ class ViewController: UIViewController {
     
     private func setTextField(){
         maskView.inputCounty.delegate = self
+    }
+    
+    private func setSentenceController(){
+        sentenceEveryDay.loadData()
+        sentenceEveryDay.valueChanged = {
+            DispatchQueue.main.async {
+//                print(sentence)
+                let viewModel = self.sentenceEveryDay.getData(row: 0)
+                self.maskView.configure(sentence: viewModel)
+            }
+            
+        }
+        
     }
     
 }

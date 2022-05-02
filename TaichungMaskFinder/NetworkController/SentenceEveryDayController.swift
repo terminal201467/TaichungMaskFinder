@@ -15,6 +15,7 @@ class SentenceEveryDayController{
     
     private var sentenceArray:[Sentence] = []{
         didSet{
+        valueChanged?()
             print(sentenceArray)
         }
     }
@@ -32,14 +33,18 @@ class SentenceEveryDayController{
         }
     }
     
-    func parsehtml(_ html:String){
+    func getData(row:Int)->Sentence{
+        return sentenceArray[row]
+    }
+    
+    private func parsehtml(_ html:String){
         var doc = try? Kanna.HTML(html: html, encoding: .utf8)
         let sentence = doc!.xpath("/html/body/div/article/div/div/div/p[2]").first?.text
         let receiveSentence = sentence!.trimmingCharacters(in: .whitespacesAndNewlines)
-        print(sentence!.trimmingCharacters(in: .whitespacesAndNewlines))
+//        print(sentence!.trimmingCharacters(in: .whitespacesAndNewlines))
         let name = doc!.xpath("/html/body/div/article/div/div/div/h1").first?.text
         let receiveName = name!.trimmingCharacters(in: .whitespacesAndNewlines)
-        print(name!.trimmingCharacters(in: .whitespacesAndNewlines))
+//        print(name!.trimmingCharacters(in: .whitespacesAndNewlines))
         sentenceArray.append(Sentence(sentence: receiveSentence, name: receiveName))
     }
 }

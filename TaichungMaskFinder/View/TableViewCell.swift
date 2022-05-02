@@ -65,6 +65,7 @@ class TableViewCell: UITableViewCell {
     private let note:UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
@@ -83,7 +84,7 @@ class TableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 5
+        stackView.spacing = 2
         return stackView
     }()
     
@@ -123,13 +124,15 @@ class TableViewCell: UITableViewCell {
         }
         
         maskKind.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-40)
+            make.top.equalToSuperview().offset(30)
+//            make.centerY.equalToSuperview().offset(-20)
             make.left.equalTo(location.snp.right).offset(20)
         }
         
         info.snp.makeConstraints { make in
+            make.top.equalTo(maskKind.snp.bottom).offset(10)
             make.left.equalTo(maskKind.snp.left)
-            make.centerY.equalToSuperview().offset(30)
+//            make.centerY.equalToSuperview().offset(40)
             make.right.equalToSuperview().offset(-20)
         }
     }

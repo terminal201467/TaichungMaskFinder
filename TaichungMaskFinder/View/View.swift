@@ -56,7 +56,8 @@ class View: UIView {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
-        tableView.rowHeight = 200
+        tableView.rowHeight = 220
+//        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
         tableView.allowsSelection = false
         return tableView
@@ -69,11 +70,35 @@ class View: UIView {
         return pickView
     }()
     
-    let everyDaySentece:UIView = {
+    let sentence:UILabel = {
+       let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
+        return label
+    }()
+    
+    let name:UILabel = {
+        let label = UILabel()
+        label.textColor = .blue
+        label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
+        return label
+    }()
+    
+    let view:UIView = {
        let view = UIView()
-        view.backgroundColor = .cyan
-        view.layer.cornerRadius = 15
+        view.backgroundColor = .white
         return view
+    }()
+    
+    lazy var  everyDaySentece:UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [sentence,name])
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.backgroundColor = .white
+        return stackView
     }()
     
     override init(frame: CGRect) {
@@ -82,6 +107,7 @@ class View: UIView {
         addSubview(items)
         addSubview(inputCounty)
         addSubview(table)
+        addSubview(view)
         addSubview(everyDaySentece)
         addSubview(activityIndicator)
         autoLayout()
@@ -92,10 +118,17 @@ class View: UIView {
     }
     
     private func autoLayout(){
-        everyDaySentece.snp.makeConstraints { make in
+        view.snp.makeConstraints { make in
             make.height.equalTo(120)
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        everyDaySentece.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(20)
+            make.left.equalToSuperview().offset(40)
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         items.snp.makeConstraints { make in
@@ -122,6 +155,9 @@ class View: UIView {
 //        }
     }
     
-    
+    func configure(sentence:Sentence){
+        self.sentence.text = "「" + "\(sentence.sentence)" + "」"
+        self.name.text = sentence.name
+    }
     
 }
