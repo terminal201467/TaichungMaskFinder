@@ -47,12 +47,30 @@ class APITest: XCTestCase {
     }
     
     func testEveryDaySentenceHttpStatusCode200(){
-        let url = URL(string: "")
+        let url = URL(string: "https://tw.feature.appledaily.com/collection/dailyquote")!
+        let promise = expectation(description: "Status Code：200")
+        
+        let dataTask = sutAPI.dataTask(with: url) { _, response, error in
+            if let error = error{
+                XCTFail("Error:\(error.localizedDescription)")
+                return
+            }else if let statusCode = (response as? HTTPURLResponse)?.statusCode{
+                if statusCode == 200{
+                    promise.fulfill()
+                }else{
+                    XCTFail("Status Code:\(statusCode)")
+                }
+            }
+        }
+        dataTask.resume()
+        wait(for: [promise], timeout: 5)
     }
 
     func testNetworkGetData() throws {
         sutNetwork.loadData()
         XCTAssertNotNil(sutNetwork.localData)
+        
+        sutNetwork.removeLocalData()
     }
 
     func testPerformanceExample() throws {
