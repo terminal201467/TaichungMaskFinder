@@ -45,10 +45,18 @@ class View: UIView {
 
     let inputCounty:UITextField = {
         let textField = UITextField()
-        textField.placeholder = "輸入區域"
-        textField.backgroundColor = .white
+        textField.backgroundColor = .placeholderText
+        textField.tintColor = .black
         textField.borderStyle = .roundedRect
+        textField.textColor = .black
         textField.clearButtonMode = .whileEditing
+        textField.attributedPlaceholder = NSAttributedString(string:"輸入區域",
+                                                             attributes:[NSAttributedString.Key.foregroundColor:UIColor.gray])
+        if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
+               let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+               clearButton.setImage(templateImage, for: .normal)
+               clearButton.tintColor = .darkGray
+           }
         return textField
     }()
 
@@ -66,6 +74,7 @@ class View: UIView {
     let areaSelector:UIPickerView = {
         let pickView = UIPickerView()
         pickView.backgroundColor = .white
+        pickView.setValue(UIColor.black, forKeyPath: "textColor")
         pickView.becomeFirstResponder()
         return pickView
     }()
@@ -73,7 +82,7 @@ class View: UIView {
     let sentence:UILabel = {
        let label = UILabel()
         label.textColor = .black
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: TiteSize.celltitle.Size)
         return label
     }()
@@ -119,7 +128,7 @@ class View: UIView {
     
     private func autoLayout(){
         view.snp.makeConstraints { make in
-            make.height.equalTo(120)
+            make.height.equalTo(150)
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -149,10 +158,6 @@ class View: UIView {
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        
-//        activityIndicator.snp.makeConstraints { make in
-//            make.center.equalTo(table.snp.center)
-//        }
     }
     
     func configure(sentence:Sentence){

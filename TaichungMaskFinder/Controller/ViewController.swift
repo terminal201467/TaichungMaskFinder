@@ -33,6 +33,11 @@ class ViewController: UIViewController {
     
     private func setNavigationBar(){
         title = "台中找口罩"
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+        navigationItem.standardAppearance = appearance
+        
         let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(choose))
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .blue
@@ -42,6 +47,7 @@ class ViewController: UIViewController {
     @objc func choose(){
         print("篩選")
         network.filterTown(town: network.selectArea)
+        maskView.inputCounty.resignFirstResponder()
         maskView.table.reloadData()
     }
     
@@ -73,6 +79,7 @@ class ViewController: UIViewController {
             toolBar.barStyle = UIBarStyle.default
             toolBar.isTranslucent = true
             toolBar.tintColor = .systemBlue
+            toolBar.barTintColor = .white
             toolBar.sizeToFit()
             toolBar.isUserInteractionEnabled = true
             toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
@@ -155,9 +162,10 @@ extension ViewController:UIPickerViewDelegate,UIPickerViewDataSource{
 extension ViewController:UITextFieldDelegate{
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         print("clear")
-        self.cancel()
+        textField.resignFirstResponder()
+        textField.text = nil
         network.loadLocalObject()
-        return true
+        return false
     }
 }
 

@@ -6,47 +6,49 @@
 //
 
 import XCTest
+import Network
 @testable import TaichungMaskFinder
 
 class APITest: XCTestCase {
     
     var sutAPI:URLSession!
     var sutNetwork:NetworkController!
+    var sutSentenceEveryDay:SentenceEveryDayController!
+    let monitor = NWPathMonitor()
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         sutNetwork = NetworkController()
         sutAPI = URLSession(configuration: .default)
-        
+        sutSentenceEveryDay = SentenceEveryDayController()
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         sutNetwork = nil
         sutAPI = nil
+        sutSentenceEveryDay = nil
     }
     
-    func testMaskGeoDataGetsHttpStatusCode200(){
+    func testMaskGeoDataGetsHttpStatusCode200()throws{
         let url = URL(string: "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json")!
         let promise = expectation(description: "Status Code：200")
+        var statusCode:Int?
+        var responseError:Error?
         
         let dataTask = sutAPI.dataTask(with: url) { _ , response, error in
-            if let error = error{
-                XCTFail("Error:\(error.localizedDescription)")
-                return
-            }else if let statusCode = (response as? HTTPURLResponse)?.statusCode{
-                if statusCode == 200{
-                    promise.fulfill()
-                }else{
-                    XCTFail("Status Code:\(statusCode)")
-                }
-            }
+            statusCode = (response as? HTTPURLResponse)?.statusCode
+            responseError = error
+            promise.fulfill()
         }
+        
         dataTask.resume()
         wait(for: [promise], timeout: 5)
+        XCTAssertNil(responseError)
+        XCTAssertEqual(statusCode, 200)
     }
     
-    func testEveryDaySentenceHttpStatusCode200(){
+    func testEveryDaySentenceHttpStatusCode200()throws{
         let url = URL(string: "https://tw.feature.appledaily.com/collection/dailyquote")!
         let promise = expectation(description: "Status Code：200")
         
@@ -66,11 +68,39 @@ class APITest: XCTestCase {
         wait(for: [promise], timeout: 5)
     }
 
-    func testNetworkGetData() throws {
+    func testGetGeoData() throws {
         sutNetwork.loadData()
         XCTAssertNotNil(sutNetwork.localData)
         
         sutNetwork.removeLocalData()
+        XCTAssertTrue(sutNetwork.localData.isEmpty)
+    }
+    
+    func testFilterMethod()throws{
+        sutNetwork.loadData()
+        sutNetwork.filterTown(town:"后里區")
+        XCTAssertNotNil(sutNetwork.localData)
+    }
+    
+    func testTableViewMethod()throws{
+        sutNetwork.loadData()
+        let rows = sutNetwork.numberOfRowsInSection(0)
+        print("rows:",rows)
+//        let indexPath:IndexPath = [0,0]
+//        let data = sutNetwork.getCellData(indexPath)
+        XCTAssertNotNil(rows)
+//        XCTAssertNotNil(data)
+    }
+    
+    func testPickViewMethod()throws{
+//        sutNetwork.loadData()
+        
+    }
+    
+    func testGetEveryDaySentence()throws{
+        sutSentenceEveryDay.loadData()
+//        XCTAssertNotNil(sutSentenceEveryDay.getData(row: 0))
+//        XCT
     }
 
     func testPerformanceExample() throws {
