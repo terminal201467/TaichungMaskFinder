@@ -110,6 +110,14 @@ class View: UIView {
         return stackView
     }()
     
+    let toTopButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.layer.cornerRadius = 15
+        button.setTitle("置頂", for:.normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -119,6 +127,7 @@ class View: UIView {
         addSubview(view)
         addSubview(everyDaySentece)
         addSubview(activityIndicator)
+        addSubview(toTopButton)
         autoLayout()
     }
     
@@ -157,6 +166,13 @@ class View: UIView {
             make.top.equalTo(items.snp.bottom)
             make.right.left.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        toTopButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.top).offset(-20)
+            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(55)
+            make.height.equalTo(30)
         }
     }
     

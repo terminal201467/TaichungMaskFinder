@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         setPickView()
         setTextField()
         setSentenceController()
+        setToTopButton()
     }
     
     private func setNavigationBar(){
@@ -38,16 +39,17 @@ class ViewController: UIViewController {
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navigationItem.standardAppearance = appearance
         
-        let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(choose))
+        let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(filter))
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .blue
         self.navigationItem.rightBarButtonItem = chooseMask
     }
     
-    @objc func choose(){
+    @objc func filter(){
         print("篩選")
         network.filterTown(town: network.selectArea)
         maskView.inputCounty.resignFirstResponder()
+        maskView.table.setContentOffset(.zero, animated: true)
         maskView.table.reloadData()
     }
     
@@ -101,6 +103,7 @@ class ViewController: UIViewController {
         maskView.inputCounty.resignFirstResponder()
         network.removeLocalData()
         network.loadLocalObject()
+        maskView.table.setContentOffset(.zero, animated: true)
     }
     
     private func setTextField(){
@@ -118,6 +121,15 @@ class ViewController: UIViewController {
             
         }
         
+    }
+    
+    private func setToTopButton(){
+        maskView.toTopButton.addTarget(self, action: #selector(toTop), for: .touchDown)
+    }
+    
+    @objc func toTop(){
+        print("toTop")
+        maskView.table.setContentOffset(.zero, animated: true)
     }
     
 }
@@ -165,6 +177,7 @@ extension ViewController:UITextFieldDelegate{
         textField.resignFirstResponder()
         textField.text = nil
         network.loadLocalObject()
+        maskView.table.setContentOffset(.zero, animated: true)
         return false
     }
 }
