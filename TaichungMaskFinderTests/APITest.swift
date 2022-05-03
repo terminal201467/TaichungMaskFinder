@@ -10,21 +10,49 @@ import XCTest
 
 class APITest: XCTestCase {
     
+    var sutAPI:URLSession!
+    var sutNetwork:NetworkController!
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        sutNetwork = NetworkController()
+        sutAPI = URLSession(configuration: .default)
+        
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try super.tearDownWithError()
+        sutNetwork = nil
+        sutAPI = nil
+    }
+    
+    func testMaskGeoDataGetsHttpStatusCode200(){
+        let url = URL(string: "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json")!
+        let promise = expectation(description: "Status Code：200")
+        
+        let dataTask = sutAPI.dataTask(with: url) { _ , response, error in
+            if let error = error{
+                XCTFail("Error:\(error.localizedDescription)")
+                return
+            }else if let statusCode = (response as? HTTPURLResponse)?.statusCode{
+                if statusCode == 200{
+                    promise.fulfill()
+                }else{
+                    XCTFail("Status Code:\(statusCode)")
+                }
+            }
+        }
+        dataTask.resume()
+        wait(for: [promise], timeout: 5)
+    }
+    
+    func testEveryDaySentenceHttpStatusCode200(){
+        let url = URL(string: "")
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testNetworkGetData() throws {
+        sutNetwork.loadData()
+        XCTAssertNotNil(sutNetwork.localData)
     }
 
     func testPerformanceExample() throws {

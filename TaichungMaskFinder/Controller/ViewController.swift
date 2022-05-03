@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     private func setNavigationBar(){
-        title = "找找口罩"
+        title = "台中找口罩"
         let chooseMask = UIBarButtonItem.init(title: "篩選區域", style: .plain, target: self, action: #selector(choose))
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .blue
@@ -92,7 +92,7 @@ class ViewController: UIViewController {
     @objc func cancel(){
         maskView.inputCounty.text = ""
         maskView.inputCounty.resignFirstResponder()
-        network.removeTaichungData()
+        network.removeLocalData()
         network.loadLocalObject()
     }
     

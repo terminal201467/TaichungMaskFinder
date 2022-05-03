@@ -125,10 +125,10 @@ class View: UIView {
         }
         
         everyDaySentece.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(20)
-            make.left.equalToSuperview().offset(40)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
+            make.top.equalTo(view.snp.top).offset(10)
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         items.snp.makeConstraints { make in
@@ -157,7 +157,7 @@ class View: UIView {
     
     func configure(sentence:Sentence){
         self.sentence.text = "「" + "\(sentence.sentence)" + "」"
-        self.name.text = sentence.name
+        self.name.text = "-" + sentence.name
     }
     
 }

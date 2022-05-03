@@ -175,8 +175,7 @@ class NetworkController: NSObject{
         return localData.count == 0 ? "沒有區域" : townData[row]
     }
     
-    func removeTaichungData(){
-        taichungData.removeAll()
+    func removeLocalData(){
         localData.removeAll()
     }
     
