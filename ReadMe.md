@@ -12,11 +12,11 @@
 * #### 顯示口罩數量
 * #### 區域搜尋
 
-![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/AreaSearch.GIF =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/AreaSearch.GIF)
 
 * #### 刪除某一筆資料
 
-![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/DeleteData.GIF =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/DeleteData.GIF)
 
 ### UnitTest
 
