@@ -1,6 +1,6 @@
 # 台中找口罩
 
-Skill Description:
+## Skill Description:
 
 1. 資料儲存位置：CoreData
 2. Get Data By AlamoFire
@@ -12,11 +12,11 @@ Skill Description:
 * #### 顯示口罩數量
 * #### 區域搜尋
 
-![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/AreaSearch.GIF =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/AreaSearch.GIF =60%x)
 
 * #### 刪除某一筆資料
 
-![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/DeleteData.GIF =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/GIF/DeleteData.GIF =60%x)
 
 ### UnitTest
 
