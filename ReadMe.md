@@ -12,11 +12,11 @@ Skill Description:
 * #### 顯示口罩數量
 * #### 區域搜尋
 
-![image](https://i.imgur.com/JVbknjY.gif =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/AreaSearch.GIF =60%x)
 
 * #### 刪除某一筆資料
 
-![image](https://i.imgur.com/6K7JbDV.gif =60%x)
+![image](https://github.com/terminal201467/TaichungMaskFinder/blob/main/DeleteData.GIF =60%x)
 
 ### UnitTest
 
