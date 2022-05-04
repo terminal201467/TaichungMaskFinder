@@ -85,23 +85,9 @@ class APITest: XCTestCase {
     func testTableViewMethod()throws{
         sutNetwork.loadData()
         let rows = sutNetwork.numberOfRowsInSection(0)
-        print("rows:",rows)
-//        let indexPath:IndexPath = [0,0]
-//        let data = sutNetwork.getCellData(indexPath)
         XCTAssertNotNil(rows)
-//        XCTAssertNotNil(data)
     }
     
-    func testPickViewMethod()throws{
-//        sutNetwork.loadData()
-        
-    }
-    
-    func testGetEveryDaySentence()throws{
-        sutSentenceEveryDay.loadData()
-//        XCTAssertNotNil(sutSentenceEveryDay.getData(row: 0))
-//        XCT
-    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
