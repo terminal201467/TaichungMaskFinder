@@ -65,7 +65,6 @@ class View: UIView {
         tableView.register(TableViewCell.self, forCellReuseIdentifier:TableViewCell.reuseIdentifier)
         tableView.separatorStyle = .singleLine
         tableView.rowHeight = 220
-//        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
         tableView.allowsSelection = false
         return tableView
@@ -165,7 +164,7 @@ class View: UIView {
         table.snp.makeConstraints { make in
             make.top.equalTo(items.snp.bottom)
             make.right.left.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(view.snp.top)
         }
         
         toTopButton.snp.makeConstraints { make in
